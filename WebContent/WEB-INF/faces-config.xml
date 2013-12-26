@@ -4,5 +4,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+	<managed-bean>
+		<description>This Bean is for handling login sessions</description>
+		<managed-bean-name>loginBean</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.login.LoginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>
