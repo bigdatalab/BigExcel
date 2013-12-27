@@ -43,8 +43,11 @@
 					<h:form>
 					</h:form>
 					<h:form>
+						
 					</h:form>
-					<h:commandButton value="Login" action="login" style="width: 79px; "></h:commandButton>
+					<h:form>
+					<h:commandButton value="Login" action="login_in" style="width: 79px; "></h:commandButton>
+					</h:form>
 				</h:panelGrid>
 			</h:panelGrid>			
 		</h:panelGroup>

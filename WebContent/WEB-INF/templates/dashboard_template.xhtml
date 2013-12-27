@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+  <title><ui:insert name="title">Default title</ui:insert></title>
+</head>
+
+<body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<div id="header">
+    <ui:insert name="header">
+        <ui:include src="/WEB-INF/templates/dashboard_header.xhtml"/>
+    </ui:insert>
+</div>
+
+<!-- <div id="content" style="height:550px;border:solid;border-width:2">-->
+<div style="height:545px;width:20%;background-color:LightBlue;float:left;">
+
+<ui:insert name="content">
+    	Content area.  See comments below this line in the source this can be happened in a natural way that seems interesting to human
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+    	<!-- </div> -->
+  </ui:insert>
+</div>
+<div style="FONT-FAMILY: 'AR PL UMing TW'; float:right; width:80%">
+
+<ui:insert name="content">
+    	This is the Server Side area.. where we can play any thing between us
+    	
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="/login/login.jsp"/> -->  
+    	<!-- </div> -->
+  </ui:insert>
+
+</div>
+<!-- </div>-->
+
+</body>
+</html>
