@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13879810748640" configfile="/bsanalytics/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login/login" x="135" y="138" id="pf138815296236216" outlinks="pf138815345853919" path="/login/login.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="dashboard/dashboard.xhtml" x="336" y="138" id="pf138815345854020" inlinks="pf138815345853919" path="/dashboard/dashboard.xhtml"/>
-  <links id="pf138815345853919" target="pf138815345854020" source="pf138815296236216" outcome="login_in"/>
+  <nodes xsi:type="pageflow:PFPage" name="login/login" x="135" y="138" id="pf138815296236216" referenceLink="//@navigationRule.0/@fromViewId|" path="/login/login.jsp"/>
 </pageflow:Pageflow>

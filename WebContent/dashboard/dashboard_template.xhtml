@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+  <title><ui:insert name="title">Dash Board</ui:insert></title>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script> 
+$(document).ready(function(){
+        $("#load_data_btn").click(function(){
+	    $("#right_side_div").load("dashboard_template.xhtml");
+	    alert("My First JavaScript-1");
+	  });
+	});
+</script>
+
+</head>
+
+
+<body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<div id="header">
+    <ui:insert name="header">
+        <ui:include src="/WEB-INF/templates/dashboard_header.xhtml"/>
+    </ui:insert>
+</div>
+
+<div id="content_whole_page" style="FONT-FAMILY: 'AR PL UMing TW'; height:550px;border:solid;border-width:2">
+<div id="left_side_div" style="height:545px;width:15%;background-color:#BFBFBF;float:left;">
+
+		    
+	 <h:commandButton id="load_data_btn" style="width:100%; height:35px" image="/resources/images/load_data.png"></h:commandButton>	 
+	
+	
+  
+</div>
+
+<div id="right_side_div" style="FONT-FAMILY: 'AR PL UMing TW'; float:right; width:85%">
+
+
+    	
+    	This page will be replaced
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="/login/login.jsp"/> -->  
+    	<!-- </div> -->
+  
+
+</div>
+</div>
+
+</body>
+
+
+</html>
