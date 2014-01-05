@@ -12,7 +12,7 @@ import org.apache.hadoop.fs.FileStatus;
 public class AccessHadoopFileSystem {
 
 	
-	 public void LoadFilesToHDFS (final String file_name) {
+	 public void LoadFilesToHDFS (final String file_name, final String path) {
 
 		 System.out.println("===Creating HDFS Files====");
 	        try {
@@ -29,9 +29,10 @@ public class AccessHadoopFileSystem {
 
 	                    FileSystem fs = FileSystem.get(conf);
 
-	                    fs.createNewFile(new Path("/user/hduser/"+file_name));
-
-	                    FileStatus[] status = fs.listStatus(new Path("/user/hduser"));
+	                    fs.createNewFile(new Path("/user/hduser/"+file_name));	                    
+                        fs.copyFromLocalFile(new Path(path), new Path("/user/hduser/"+file_name));
+	                    
+                        FileStatus[] status = fs.listStatus(new Path("/user/hduser"));
 	                    for(int i=0;i<status.length;i++){
 	                        System.out.println(status[i].getPath());
 	                    }
@@ -43,9 +44,13 @@ public class AccessHadoopFileSystem {
 	        }
 	    }
 	 
+	 public void copyDataTOHDFSFile(){
+		 
+	 }
+	 
 	 
 	 public static void main(String args[]){
 		 
-		 new AccessHadoopFileSystem().LoadFilesToHDFS("abc");
+		 new AccessHadoopFileSystem().LoadFilesToHDFS("abc","abc");
 	 }
 }

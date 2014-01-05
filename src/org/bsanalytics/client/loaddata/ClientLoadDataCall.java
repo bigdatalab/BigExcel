@@ -4,7 +4,7 @@ import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 import org.bsanalytics.dashboard.FileChooserForLoadingData;
 
-public class ClientLoadDataCall {
+public class ClientLoadDataCall extends Thread {
 	
 	String response_str=null;
 	ClientObject cObj = new ClientObject();
@@ -15,19 +15,18 @@ public class ClientLoadDataCall {
 	
 	public String sendLoadRequest(){
 	
-	    String file_name = choose_file.getFileName();
+	    /*String file_name = choose_file.getFileName();
 	    String file_path = choose_file.getPath();
-	    
-	    String path_and_file = file_path + ":" + file_name;
-	    System.out.println("===Coming Here===");
-	    System.out.println(path_and_file);
-	    
-	    Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/load_hive_data");
+	    String path_and_file = file_path + ":" + file_name;*/
+	    //starting Thread
+	    new SendLoadRequest().start();
+	    /*Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/load_hive_data");
 		String response = resource.accept("text/plain").post(String.class,path_and_file);
 		
 		response_str = response.toString();
 		System.out.println(response_str);
-		return response_str;
+		return response_str;*/
+	    return "";
 		
 	}
 	
@@ -36,6 +35,7 @@ public class ClientLoadDataCall {
     	String table_string= create_del_query.getQuery().trim(); 
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/create_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
+		System.out.println(response);
 		return response;
 	
     }
@@ -50,6 +50,8 @@ public class ClientLoadDataCall {
 		return response;
 	
     }
+
+
 
 }
 
