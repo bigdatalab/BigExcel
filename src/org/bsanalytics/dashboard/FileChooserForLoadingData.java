@@ -7,8 +7,9 @@ public class FileChooserForLoadingData {
 	
 	JFileChooser chooser = new JFileChooser();
 	private static String file_name;
+	private static String absolute_path;
 	
-	public void selectFileFromSystem(){
+	public String selectFileFromSystem(){
 		
 		 
 		    FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -17,13 +18,20 @@ public class FileChooserForLoadingData {
 		    int returnVal = chooser.showOpenDialog(chooser);
 		    if(returnVal == JFileChooser.APPROVE_OPTION) {
 		    	file_name=chooser.getSelectedFile().getName();
+		    	absolute_path = chooser.getSelectedFile().getAbsolutePath();
 		       System.out.println("You chose to open this file: " +file_name);
+		       System.out.println("You chose file path: " +absolute_path);
 		    }
+		    return null;
 	}
 	
 	
 	public String getFileName(){
 		return file_name;
+	}
+	
+	public String getPath(){		
+		return absolute_path;
 	}
 
 }

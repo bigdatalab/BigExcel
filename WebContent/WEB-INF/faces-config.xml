@@ -17,7 +17,7 @@
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>clientLoadDataCall</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.client.ClientLoadDataCall</managed-bean-class>
+		<managed-bean-class>org.bsanalytics.client.loaddata.ClientLoadDataCall</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -27,7 +27,7 @@
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>createTableBean</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.client.CreateTableBean</managed-bean-class>
+		<managed-bean-class>org.bsanalytics.client.loaddata.CreateDeleteTableBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

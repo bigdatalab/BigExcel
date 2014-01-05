@@ -43,10 +43,12 @@ display:none;
 <div id="left_side_div" style="height:545px;width:15%;background-color:#BFBFBF;float:left;">
 
 <div id="flip"><h:commandButton id="load_data_btn" style="width:100%; height:30px" image="/resources/images/dashboard/load_data.png"></h:commandButton></div>
-<div id="panel"><h:form id="load_form"><h:commandLink id="load_link" value="Load" onclick="()"></h:commandLink></h:form>
+<div id="panel"
+><h:form id="load_form"><h:commandLink id="load_link" value=" Load " style="text-decoration:underline;color:white;" onclick="()"></h:commandLink></h:form>
 <br></br>
-<h:form><h:link>View</h:link></h:form>
+<h:form><h:commandLink id="load_link" value="View" style="text-decoration:underline;color:white;"></h:commandLink></h:form>
 </div>
+
 <div id="flip"><h:commandButton id="load_data_hdfs" style="width:100%; height:30px" image="/resources/images/dashboard/hdfs.png"></h:commandButton></div>
 </div>
 
