@@ -14,19 +14,25 @@
 	<br></br>
 	<br></br>
 	<br></br>
-	<table style="height:50%;width:100%;font-family:Serif;" border="3"> 
+	<table style="width:100%;font-family:Serif; height : 212px;" border="3"> 
 	<tbody>
-	
-	<tr><td style="FONT-SIZE: large; FONT-FAMILY: 'SansSerif'; width:350px;">Please Select a file </td>
+	<tr><td><h:inputTextarea id="table_creation_area" style="background-color:#BFBFBF; width : 377px; height : 101px;" value="#{createTableBean.query}"></h:inputTextarea></td>
+	<td><h:form><h:commandButton value="Create Table" style=" width : 101px;" action="#{createTableBean.showQuery}"></h:commandButton></h:form></td>
+	</tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+	<tr><td style="FONT-SIZE: medium; FONT-FAMILY: 'SansSerif'; width:350px;">Please Select a file </td>
 	<td style="width:60px;"> </td>
 	<td> </td>
 	</tr>
 	<tr>
 	<td style=" width : 382px;"><h:inputText style="background-color:#BFBFBF; width : 377px;"></h:inputText></td>
-	<td><h:commandButton value="Load" style=" width : 101px;"></h:commandButton></td>
-	<td></td>
+	<td><h:form><h:commandButton value="Select File" style=" width : 101px;" action="#{fileChooserForLoading.selectFileFromSystem}"></h:commandButton></h:form></td>
+	<td><h:form><h:commandButton value="Load" style=" width : 101px;" action="#{clientLoadDataCall.sendLoadRequest}"></h:commandButton></h:form></td>
+	<td>Status</td>
 	</tr>
-		
+	
 	</tbody>	
 	</table>
 	
