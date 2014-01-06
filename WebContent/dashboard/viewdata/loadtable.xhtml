@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+    <table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
+	<tbody>
+	<tr><h:inputHidden value="#{createTableBean.delete_table_query}" style="width:100%"></h:inputHidden></tr>
+	</tbody>
+	</table>
+	
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<h:form>
+	<table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
+	<tbody>
+	 
+    <tr><td></td><td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">Delete Table</td><td></td></tr>
+    <tr><td></td><td><h:inputText style="background-color:#BFBFBF; width : 377px;" value="#{createTableBean.delete_table_query}"></h:inputText></td><td></td>
+    </tr>
+    <tr><td></td>
+    <td><h:commandButton id="delete_table_btn" value="Delete Table" style=" width : 101px;" action="#{clientLoadDataCall.sendDeleteTableRequest}"></h:commandButton></td>
+    <td></td>
+    </tr>
+	<tr></tr>
+    <tr></tr>
+    <tr></tr>
+	<tr><td></td><td style="COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: 'Serif';">Create Table</td><td></td></tr>
+	<tr><td></td><td><h:inputTextarea id="table_creation_area" style="FONT-FAMILY: 'AR PL UMing CN'; background-color:#BFBFBF; width : 377px; height : 103px;" value="#{createTableBean.query}"></h:inputTextarea></td>
+	<td></td>
+	</tr>
+	<tr><td></td>
+	<td><h:commandButton value="Create Table" style=" width : 101px;" action="#{clientLoadDataCall.sendCreateTableRequest}"></h:commandButton></td>
+	<td></td>
+	</tr>
+   
+    
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+	<tr><td></td><td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium; width:350px;">Select a file to load </td>
+	<td></td>
+	</tr>
+	<tr><td></td>
+	<td style=" width : 382px;"><h:inputText style="background-color:#BFBFBF; width : 377px;"></h:inputText></td>
+	<td></td>
+	</tr>
+	<tr><td></td>
+	<td><h:commandButton value="Select File" style=" width : 101px;" action="#{fileChooserForLoading.selectFileFromSystem}"></h:commandButton>
+	<h:commandButton value="Load" style=" width : 101px;" action="#{clientLoadDataCall.sendLoadRequest}"></h:commandButton>
+	</td>
+	<td></td>
+	</tr>
+	
+	</tbody>	
+	</table>
+	</h:form>
+	</body>
+	
+</html>

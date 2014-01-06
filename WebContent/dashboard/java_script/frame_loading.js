@@ -5,3 +5,11 @@ $(document).ready(function(){
         });
 	});
 
+
+$(document).ready(function(){
+    $("#load_form_view\\:load_link_view").click(function(){
+    $("#right_side_div").load("./viewdata/viewdata.xhtml");	    
+    });
+});
+
+
