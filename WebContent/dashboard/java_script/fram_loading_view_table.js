@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
-    $("#test_form\\:test_button").click(function(){
-    $("#second").load("./test_view.html");	
-    alert("executing....");
+    $("#table_view_form\\:view_table_btn").click(function(){
+    $("#table_view_div").load("./loadtable.xhtml");	
+    
     });
 });

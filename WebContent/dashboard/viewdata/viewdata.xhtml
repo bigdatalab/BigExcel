@@ -25,12 +25,8 @@
 	    <tbody style="FONT-FAMILY: 'Serif';">
     	<tr><td>Enter Table Name to View</td></tr>
     	<tr><td style=" width : 340px;"><h:inputText style="background-color:#BFBFBF; width : 377px;" value="#{viewTableBackingBean.table_name}"></h:inputText></td>
-    	<td><h:form id="table_view_form"><h:commandButton id="view_table_btn" value="View" style=" width : 101px;"></h:commandButton></h:form></td>
+    	<td><h:form id="table_view_form"><h:button id="view_table_btn" value="View" style=" width : 101px;" onclick="()"></h:button></h:form></td>
     	</tr>
-    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
-	  	<!-- <div> -->
-    	<!-- <ui:include src="content.xhtml"/> -->  
-    	<!-- </div> -->
     	</tbody>
     	</table>
     	
@@ -38,10 +34,8 @@
 
 <div id="table_view_div" style="border-style:solid; height:300px">
   
-    	dfgsfdgsdf
-    	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
-		<!--<ui:include src="footer.xhtml"/>  -->
-  
+    	Table will be displayed here
+    	
 </div>
 
 </body>
