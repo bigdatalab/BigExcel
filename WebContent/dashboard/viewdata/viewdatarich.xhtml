@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:r="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"> 
+
+<h:head>
+<script src="../java_script/javascript-1.10.2-library.js"></script>
+<script src="../java_script/fram_loading_view_table.js"></script>
+
+</h:head> 
+
+<body>
+<h:form id="table_view_form">
+<div id="header" style="height:40px;">
+    <ui:insert name="header">
+    	Errors will be displayed here
+    	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+    	<!-- <ui:include src="errors.xhtml"/> -->
+    </ui:insert>
+</div>
+
+<div id="content" style="height:180px;background-color:#7F7F7F;">
+ 
+        <rich:panel style="font-size:medium;background-color:#7F7F7F;">
+        <f:facet name="header">
+        Enter Table Name to View the data
+        </f:facet>
+		
+		<table border="3" style="width:100%">
+	    <tbody style="FONT-FAMILY: 'Serif';">
+        <tr><td style="width:33%"></td><td style="width:33%"></td><td style="width:33%"></td></tr>   	
+    	<tr></tr>
+    	<tr><td></td>
+    	<td style=" width : 340px;"><h:inputText value="#{viewTableBackingBean.table_name}" style="height:30px;width:377px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;"></h:inputText></td>
+    	<td></td>
+    	</tr>
+    	<tr><td></td>
+    	<td>
+		<r:commandButton value="View" type="button" id="view_table_btn" style="height:30px;width:101px"></r:commandButton>
+    	</td>
+    	</tr>
+    	</tbody>
+    	</table> 
+    	
+		</rich:panel> 	    
+    	
+</div>
+</h:form>
+
+
+<div id="table_view_div" style="height:250px;border-style:solid;">
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<div id="table_view_div_spinner" style="height:50px;text-align: center; display: none;">
+   <img src="../../resources/images/progress/loader.gif" alt="Loading..."/>
+   </div>
+</div>
+
+
+</body> 
+</html>

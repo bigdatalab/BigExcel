@@ -2,7 +2,6 @@ package org.bsanalytics.client.loaddata;
 
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
-import org.bsanalytics.dashboard.FileChooserForLoadingData;
 
 public class SendLoadRequest extends Thread {
 	

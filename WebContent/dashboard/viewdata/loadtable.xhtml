@@ -2,32 +2,40 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:rich="http://richfaces.org/rich"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:c="http://java.sun.com/jstl/core">
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:r="http://richfaces.org/a4j">
 
 <body>
    
-  
-   <rich:dataTable value="#{viewTableBackingBean.table}" var="dataTable" id="table">
-    <c:forEach items="#{viewTableBackingBean.column_names}" var="c"  varStatus="i">
-         <rich:column>
-               <f:facet name="header"> 
-                     <h:outputText value="#{c}" />
-               </f:facet>
-               <h:outputText value="#{dataTable[i.index]}" />
-         </rich:column>
-    </c:forEach>
-</rich:dataTable >
-   
-      
-   <a4j:status>
+       
+    <h:form id="form">
+    <rich:panel>
+    
+    <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="i" rows="2" id="table" align="center">  
+            <rich:column>  
+                 <h:panelGrid align="center">
+                 <r:ajax event="click">
+                        #{i}                        
+                    </r:ajax>
+                    <r:status>
             <f:facet name="start">
-                <h:graphicImage value="../resources/progress/ajax-loader.gif" alt="ai" />
+                <h:graphicImage value="../resources/progress/ajax-loader.gif" alt="not displaying" />
             </f:facet>
-        </a4j:status>
+        </r:status>
+                  </h:panelGrid>
+            </rich:column>  
+            <f:facet name="footer">  
+                <rich:dataScroller align="center" for="table" maxPages="5"
+                      page="#{dataScrollerBeanForViewData.scrollerPage}" id="sc2" reRender="sc1" />
+            </f:facet>  
+        </rich:dataTable>
+        
+	</rich:panel>
+	</h:form>
+	
    </body>
 </html>

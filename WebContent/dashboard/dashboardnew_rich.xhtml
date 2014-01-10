@@ -1,15 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:rich="http://richfaces.org/rich">
-<head>
-  <title><ui:insert name="title">Dash Board</ui:insert></title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"> 
+
+<h:head>
+ <title><ui:insert name="title">Dash Board</ui:insert></title>
+<script src="java_script/javascript-1.10.2-library.js">
 </script>
 <script src="java_script/frame_loading.js"></script>
 <script src="java_script/sliding.js"></script>
+<script src="../java_script/fram_loading_view_table.js"></script>
 
 <style type="text/css"> 
 #panel,#flip
@@ -27,10 +31,9 @@ display:none;
 }
 </style>
 
-</head>
-
-
-<body>
+</h:head> 
+ 
+ <body>
 <ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
 
 <div id="header">
@@ -40,7 +43,7 @@ display:none;
 </div>
 
 <div id="content_whole_page" style="FONT-FAMILY: 'AR PL UMing TW'; height:520px;border:solid;border-width:2">
-<div id="left_side_div" style="height:545px;width:15%;background-color:#BFBFBF;float:left;">
+<div id="left_side_div" style="height:520px;width:15%;background-color:#BFBFBF;float:left;">
 
 <div id="flip"><h:commandButton id="load_data_btn" style="width:100%; height:30px" image="/resources/images/dashboard/load_data.png"></h:commandButton></div>
 <div id="panel"
@@ -64,4 +67,5 @@ display:none;
 </div>
 </div>
 </body>
+ 
 </html>

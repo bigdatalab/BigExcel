@@ -1,20 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
-<head>
- <title><ui:insert name="title">Dash Board</ui:insert></title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-</script>
-<script src="../java_script/data_load.js"></script>
-</head>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"> 
+
+<h:head></h:head> 
 <body>
-  <h:form id="top_form">
+ 	<h:form>
     <table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
 	<tbody>
 	<tr><h:inputHidden value="#{createTableBean.delete_table_query}" style="width:100%"></h:inputHidden></tr>
@@ -29,20 +24,21 @@
 	
 	<table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
 	<tbody>
-	 
+	
     <tr><td></td><td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">Delete Table</td><td></td></tr>
     <tr><td></td><td><h:inputText style="background-color:#BFBFBF; width : 377px;" value="#{createTableBean.delete_table_query}"></h:inputText></td><td></td>
     </tr>
     <tr><td></td>
-    <td><h:commandButton id="delete_table_btn" value="Delete Table" style=" width : 101px;" actionListener="#{actionListenerViewLoadData.handleActionMethod}">
-      <f:actionListener listener="#{actionListenerViewLoadData.actionListener}"/>
-                
+    <td><h:commandButton id="delete_table_btn" value="Delete Table" style=" width : 101px;" >
+     <a4j:actionListener listener="#{actionListenerViewLoadData.handleActionMethod}"/>
+                <f:ajax render="messages"/>
     </h:commandButton></td>
     <td></td>
     </tr>
 	<tr><td></td><td><a4j:commandButton value="Ajax test" actionListener="#{clientLoadDataCall.processAction}"></a4j:commandButton></td></tr>
     <tr></tr>
     <tr></tr>
+	
 	<tr><td></td><td style="COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: 'Serif';">Create Table</td><td></td></tr>
 	<tr><td></td><td><h:inputTextarea id="table_creation_area" style="FONT-FAMILY: 'AR PL UMing CN'; background-color:#BFBFBF; width : 377px; height : 103px;" value="#{createTableBean.query}"></h:inputTextarea></td>
 	<td></td>
@@ -73,6 +69,5 @@
 	</tbody>	
 	</table>
 	</h:form>
-	</body>
-	
+</body> 
 </html>

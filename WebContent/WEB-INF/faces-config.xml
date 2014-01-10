@@ -40,6 +40,21 @@
 		<managed-bean-class>org.bsanalytics.apis.viewdata.DynamicDataModel</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>actionListenerViewLoadData</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.ActionListeners.ActionListenerViewLoadData</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dataScrollerBeanForViewData</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.viewdata.DataScrollerBeanForViewData</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dynamicPaginationLoadingViewModel</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.viewdata.DynamicPaginationLoadingViewModel</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>login/login</display-name>
 		<from-view-id>/login/login.jsp</from-view-id>

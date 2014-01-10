@@ -1,10 +1,16 @@
 package org.bsanalytics.client.loaddata;
 
+
+
+
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
+
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
-import org.bsanalytics.dashboard.FileChooserForLoadingData;
 
-public class ClientLoadDataCall extends Thread {
+public class ClientLoadDataCall extends Thread implements ActionListener{
 	
 	String response_str=null;
 	ClientObject cObj = new ClientObject();
@@ -41,17 +47,25 @@ public class ClientLoadDataCall extends Thread {
     }
     
     
-    public String sendDeleteTableRequest(){
+    public void sendDeleteTableRequest(ActionEvent e){
     	
     	String table_string= create_del_query.getDelete_table_query().trim();
-    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
-		String response = resource.accept("text/plain").post(String.class,table_string);
-		System.out.println(response);
-		return response;
+    	//Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
+		//String response = resource.accept("text/plain").post(String.class,table_string);
+		String response="Test";
+    	System.out.println(response);
+		//return response;
 	
     }
 
 
+	@Override
+	public void processAction(ActionEvent arg0) throws AbortProcessingException {
+		String response="Test";
+    	System.out.println(response);
+		
+	}
 
+	
 }
 

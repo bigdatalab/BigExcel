@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"
+      xmlns:r="http://richfaces.org/a4j"> 
+
+<h:head>
+<script src="../java_script/javascript-1.10.2-library.js"></script> 
+<script src="../java_script/dim_page_view_table.js"></script>
+</h:head>
+<body>
+ <h:form>
+  <div style="height: 50px">
+   <h:panelGrid>
+   
+         <r:status name="for_status_rendering">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/loader.gif" alt="not displaying" />
+            </f:facet>
+             </r:status>
+      
+        </h:panelGrid>
+   </div>
+    	 
+    <!-- <rich:panel style="padding-right:auto;padding-left:160px;">-->
+
+    <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="i" rows="2" id="table">  
+             
+            <rich:column>  
+                 #{i}        
+             <h:panelGrid>   
+                 <r:ajax event="click"/>   
+         		     
+         	</h:panelGrid>	   
+			            
+            </rich:column>
+               
+            <f:facet name="footer">  
+                <rich:dataScroller align="center" for="table" maxPages="5"
+                      page="#{dataScrollerBeanForViewData.scrollerPage}" id="sc2" reRender="sc1" status="for_status_rendering"/>
+            </f:facet>  
+        </rich:dataTable>               
+
+    	</h:form> 	
+</body> 
+</html>
