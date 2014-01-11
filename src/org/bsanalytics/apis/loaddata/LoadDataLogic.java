@@ -67,7 +67,7 @@ public class LoadDataLogic {
 		
 		try {
 			
-			stmt.executeUpdate(table_string);
+			stmt.executeUpdate(table_string + " row format delimited fields terminated by ',' stored as textfile");
 			
 		} catch (SQLException e) {
 			return "Table already exists";

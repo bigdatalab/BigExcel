@@ -5,7 +5,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"
-      xmlns:r="http://richfaces.org/a4j"> 
+      xmlns:r="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"> 
 
 <h:head>
 <script src="../java_script/javascript-1.10.2-library.js"></script> 
@@ -27,19 +28,23 @@
     	 
     <!-- <rich:panel style="padding-right:auto;padding-left:160px;">-->
 
-    <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="i" rows="2" id="table">  
-             
-            <rich:column>  
-                 #{i}        
+    <rich:dataTable value="#{pagination.list}" var="dataTable" rows="7" id="table">  
+        <c:forEach items="#{pagination.columns}" var="c"  varStatus="i">
+         <rich:column>
+               <f:facet name="header"> 
+                     <h:outputText value="#{c}" />
+               </f:facet>
+               <h:outputText value="#{dataTable[i.index]}" />
+                        
              <h:panelGrid>   
                  <r:ajax event="click"/>   
          		     
          	</h:panelGrid>	   
 			            
             </rich:column>
-               
+      </c:forEach>
             <f:facet name="footer">  
-                <rich:dataScroller align="center" for="table" maxPages="5"
+                <rich:dataScroller align="center" for="table" maxPages="10"
                       page="#{dataScrollerBeanForViewData.scrollerPage}" id="sc2" reRender="sc1" status="for_status_rendering"/>
             </f:facet>  
         </rich:dataTable>               

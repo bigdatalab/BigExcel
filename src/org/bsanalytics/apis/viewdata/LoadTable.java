@@ -15,7 +15,7 @@ public class LoadTable {
 	@GET
 	@Path("/{view_hive_table}")
 	@Produces("text/plain")
-	public List<List<Integer>> loadDataFromToHiveTable(@PathParam("view_hive_table") String table_name){
+	public List<List<String>> loadDataFromToHiveTable(@PathParam("view_hive_table") String table_name){
 		return new LoadTableFromDataBase().loadDataFromTable(table_name);
 		
 	}

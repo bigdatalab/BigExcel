@@ -7,7 +7,7 @@ import javax.faces.model.SelectItem;
 
 public class DataScrollerBeanForViewData {
 	
-	private int rows = 2; //change this number to scrolling requirements
+	private int rows = 20; //change this number to scrolling requirements
 	private int scrollerPage=1;
 	private int size;
 	

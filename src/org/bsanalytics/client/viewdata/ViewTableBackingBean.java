@@ -9,7 +9,7 @@ import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
 public class ViewTableBackingBean {
 
 	private String table_name;
-	private List<List<Integer>> table;
+	private List<List<String>> table;
 	private List<String> column_names;
 	
 	public List<String> getColumn_names() {
@@ -21,7 +21,7 @@ public class ViewTableBackingBean {
 		this.column_names = column_names;
 	}
 
-	public void setTable(List<List<Integer>> table) {
+	public void setTable(List<List<String>> table) {
 		this.table = table;
 	}
 
@@ -34,7 +34,7 @@ public class ViewTableBackingBean {
 	}
 	
 	
-	public List<List<Integer>> getTable(){
+	public List<List<String>> getTable(){
 		System.out.println("Call Came.....");
 		LoadTableFromDataBase lTFD = new LoadTableFromDataBase();
 		table_name = "years_frequency";
@@ -57,6 +57,7 @@ public class ViewTableBackingBean {
 	
 		List<String> li = new ArrayList<String>();
 		li.add("years");
+		li.add("prince");
 		System.out.println("returning column heres------");
 		return li;
 	}
