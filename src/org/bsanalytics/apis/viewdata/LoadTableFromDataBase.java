@@ -30,7 +30,7 @@ public class LoadTableFromDataBase {
 			res = stmt.executeQuery(table_exists);			
 			metadata = res.getMetaData();
 			column_count = metadata.getColumnCount();
-		    System.out.println(column_count);		
+		    //System.out.println(column_count);		
 		
 		} catch (SQLException e) {
 			e.printStackTrace();		}
@@ -46,13 +46,15 @@ public class LoadTableFromDataBase {
 	public List<String> getTCustomRowsList(int column_count, int fetch_size){
 		int check=1;
 		List<String> rows=null;
+		//for accessing fresh data every time
+		table_rows_list = new ArrayList<>();
 		try {
 			
 			//short circuit is necessary not to skip the record		
 			while (check<=fetch_size && res.next()){
 				//new list for every row
 				rows = new ArrayList<>(); 
-				System.out.println(column_count);
+				//System.out.println(column_count);
 				int count=1;
 				while (count <= column_count) {  
 					//System.out.println(res.getString(count));
@@ -96,6 +98,7 @@ public class LoadTableFromDataBase {
 		return rows_count;
 	}*/
 	
+	
 	public static void main(String args[]){
 		LoadTableFromDataBase l = new LoadTableFromDataBase();
 	    l.loadDataFromTable("sample");
@@ -107,9 +110,10 @@ public class LoadTableFromDataBase {
 	    		break;
 	    	}
 	    	System.out.println("call---");
-	    	System.out.println(l.getListTwo());
+	    	//System.out.println(l.getListTwo());
 	    	//System.out.println(l.getRowCount("sample"));
-	    	System.exit(0);
+	    	
+	    	
 	    	try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

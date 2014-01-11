@@ -8,7 +8,7 @@ import org.bsanalytics.client.loaddata.ReadCSVFileNumberCount;
 
 public class Pagination {
 	
-	List<List<String>> list;
+	List<List<Object>> list;
 	List<String> columns;
 	String first_name;
 	String second_name;
@@ -33,13 +33,13 @@ public class Pagination {
 		this.second_name = second_name;
 	}
 
-	public List<List<String>> getList() {
+	public List<List<Object>> getList() {
 		list = takeList();
 		//System.out.println("coming... List =" + list);
 		return list;
 	}
 
-	public void setList(List<List<String>> list) {
+	public void setList(List<List<Object>> list) {
 		this.list = list;
 	}
 	
@@ -53,8 +53,8 @@ public class Pagination {
 		this.columns = columns;
 	}
 
-	public List<List<String>> takeList(){
-		System.out.println("Invoked");
+	public List<List<Object>> takeList(){
+		/*System.out.println("Invoked");
 		List<List<String>> li = new ArrayList<>();
 		List<String> return_list;
 		
@@ -71,35 +71,35 @@ public class Pagination {
     		return li;
     	}
     	return_list = lTFD.getTCustomRowsList(column_count, 10);
-    	//li = lTFD.getListTwo();
+    	li = lTFD.getListTwo();
     	//System.out.println(li.get(0));
     	//end sequence
     	
     	if (return_list == null){
     		System.out.println("breaking---");
     		return null;
-    	}
+    	}*/
     			
 		
-	/*	List<List<Integer>> li = new ArrayList<>();
-		List<Integer> innli = new ArrayList<>();
+		List<List<Object>> li = new ArrayList<>();
+		List<Object> innli = new ArrayList<>();
 		innli.add(10);
 		innli.add(20);
 		li.add(innli);
 		
-		List<Integer> innli1 = new ArrayList<>();
+		List<Object> innli1 = new ArrayList<>();
 		innli1.add(10);
 		innli1.add(20);
 		li.add(innli1);
 		
-		List<Integer> innli2 = null;
+		List<Object> innli2 = null;
 		for (int i=1 ; i<100 ; i++){
 			innli2 = new ArrayList<>();
 			innli2.add(i);
 			innli2.add(i+1);
 			li.add(innli2);
 			
-		}*/
+		}
 		
 		return li;
 	}
