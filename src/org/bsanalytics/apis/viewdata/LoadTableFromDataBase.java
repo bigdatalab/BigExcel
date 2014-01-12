@@ -26,11 +26,10 @@ public class LoadTableFromDataBase {
 		
 		String table_exists = "select * from "+table_name;
 		try {
-			stmt.setFetchSize(10);
+			//stmt.setFetchSize(10);
 			res = stmt.executeQuery(table_exists);			
 			metadata = res.getMetaData();
 			column_count = metadata.getColumnCount();
-		    //System.out.println(column_count);		
 		
 		} catch (SQLException e) {
 			e.printStackTrace();		}
@@ -44,10 +43,14 @@ public class LoadTableFromDataBase {
 	
 		
 	public List<String> getTCustomRowsList(int column_count, int fetch_size){
+		
+		//variable for getting the rows according to fetch_size
 		int check=1;
 		List<String> rows=null;
-		//for accessing fresh data every time
+		
+		//for accessing fresh chunked data every time
 		table_rows_list = new ArrayList<>();
+		
 		try {
 			
 			//short circuit is necessary not to skip the record		
@@ -83,23 +86,10 @@ public class LoadTableFromDataBase {
 		return column_count;
 	}
 	
-	/*public int getRowCount(String table_name){
-		
-		String sql = "select count(*) from "+table_name;
-		int rows_count = 0;
-		try {
-			rows_count = stmt.executeUpdate(sql);
-			return rows_count;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
-		return rows_count;
-	}*/
 	
 	
-	public static void main(String args[]){
+	
+	/*public static void main(String args[]){
 		LoadTableFromDataBase l = new LoadTableFromDataBase();
 	    l.loadDataFromTable("sample");
 	    //System.out.println(l.getRowCount("sample"));
@@ -124,6 +114,6 @@ public class LoadTableFromDataBase {
 	    }
         
 	    //System.out.println(l.getTCustomRowsList(6));
-	}
+	}*/
 	
 }

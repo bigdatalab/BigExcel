@@ -15,36 +15,35 @@
 <body>
  <h:form>
   <div style="height: 50px">
-   <h:panelGrid>
+   <h:panelGrid columns="2">
    
-         <r:status name="for_status_rendering">
+      <r:commandButton value="Next" type="button" for="table" status="for_status_rendering" render="table" style="color:White;width:150px;background-color:Black;background:Black; height : 26px;">
+      </r:commandButton>	   
+   
+      <r:status name="for_status_rendering">
              <f:facet name="start">
-		         <h:graphicImage value="../../resources/images/progress/loader.gif" alt="not displaying" />
+		         <h:graphicImage value="../../resources/images/progress/table_loader.gif" alt="not displaying" />
             </f:facet>
-             </r:status>
-      
-        </h:panelGrid>
-        
-   </div>
- <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="30" id="table">  
+      </r:status>
+       </h:panelGrid>
+             
+             </div>
+     
+  
+ <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="25" id="table">  
                
-         <c:forEach items="#{pagination.columns}" var="c"  varStatus="i">
+         <c:forEach items="#{pagination.columns}" var="iterate_value"  varStatus="subscript">
          <rich:column>
                <f:facet name="header"> 
-                     <h:outputText value="#{c}" />
+                     <h:outputText value="#{iterate_value}" />
                </f:facet>
-               <h:outputText value="#{dataTable[i.index]}" />
-                        
-             <h:panelGrid>   
-                 <r:ajax event="click"/>   
-         		     
-         	</h:panelGrid>	   
-			            
+               <h:outputText value="#{dataTable[subscript.index]}" />
+         
             </rich:column>
       </c:forEach>
       
             <f:facet name="footer">  
-				<r:commandButton value="Next" type="button" for="table" status="for_status_rendering" render="table" style="width:150px"></r:commandButton>               
+				               
             </f:facet>         
 						
         </rich:dataTable>               
