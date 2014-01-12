@@ -105,12 +105,12 @@ public class LoadTableFromDataBase {
 	    //System.out.println(l.getRowCount("sample"));
 	    while(true){
 	    	
-	    	if (l.getTCustomRowsList(column_count, 2) == null){
+	    	if (l.getTCustomRowsList(column_count, 7) == null){
 	    		System.out.println("breaking---");
 	    		break;
 	    	}
 	    	System.out.println("call---");
-	    	//System.out.println(l.getListTwo());
+	    	System.out.println(l.getListTwo());
 	    	//System.out.println(l.getRowCount("sample"));
 	    	
 	    	

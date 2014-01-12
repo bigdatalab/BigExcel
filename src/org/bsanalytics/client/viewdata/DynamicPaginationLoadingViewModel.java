@@ -19,18 +19,20 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	private String[] data = new String[51];// {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11"};
 	private List<String> li = new ArrayList<>(10);
 	private List<List<String>> org_list = new ArrayList<>();
-    private Integer rowKey = null;  
+    private Long rowKey = null;  
     List<String> columns;
     
     private Integer rowId;
-    private Map<Integer,Object> wrappedData = new HashMap<Integer,Object>();
-    private List<Integer>                           wrappedKeys      = null;
+    private Map<Long,Object> wrappedData = new HashMap<Long,Object>();
+    private List<Long>                           wrappedKeys      = null;
 	private Integer                        totalRows        = 0;
 	private Integer                        firstRow         = 0;
 	private Integer                        numberOfRows     = 0;
     LoadTableFromDataBase lTFD = new LoadTableFromDataBase();
-    int it;
+    long it;
     int column_count=0;
+    int first_row;
+    int multiple_calls_prevention_flag=0;
     public DynamicPaginationLoadingViewModel(){
     	
     	
@@ -59,11 +61,12 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	//data base
     	getTestCol();
     	it=1;
+    	first_row=0;
     }
     
     @Override  
     public void setRowKey(Object o) {  
-    	rowKey = (Integer) o;  
+    	rowKey = (Long) o;  
     }  
   
     @Override  
@@ -73,18 +76,20 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
   
     @Override  
     public void walk(FacesContext fc, DataVisitor dv, Range range, Object o) {  
-        System.out.println("===walk invoked====");
+        System.out.println(fc.isProcessingEvents());
+        System.out.println(o);
+    	/*  System.out.println("===walk invoked====");
                
     	try {
 			Thread.sleep(0);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-    	SequenceRange sr = (SequenceRange) range;  
+		}*/
+    	/*SequenceRange sr = (SequenceRange) range;  
         int currentRow = sr.getFirstRow();  
        
-       /* System.out.println("Current Row =" + currentRow);
+        System.out.println("Current Row =" + currentRow);
         int rows = sr.getRows();  
         System.out.println("Total Rows =" + rows);
         
@@ -105,24 +110,28 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	    // This is method we have to populate a data for DataTable
 	    //Range parameter provides the firstRow value and no. of rows value. Extract those values to local variables
 	   this.firstRow = ((SequenceRange) range).getFirstRow();
-	    System.out.println("====2====");
+	    System.out.println("====2====" + firstRow);
 	    this.numberOfRows = ((SequenceRange) range).getRows();
-	    System.out.println("====3====");
+	    System.out.println("====3=====" + numberOfRows);
 	 
 	    //we can populate the data from Service Call/Web Service Call For eg. Data from database or Search results using Range values
 	    //Define getItemsByrange() method to extract the required data by passing the range values
 	    //List<String> sampleDataList = getItemsByrange(this.firstRow, this.numberOfRows.intValue());
-	    
+	  
+    	    	
 	  //sequence is really important here
-	  		
+      if (o != null)
+      {
+    	  
+      
 	      	List<String> inter_list = lTFD.getTCustomRowsList(column_count, this.numberOfRows);
-	      	System.out.println("intermediate =" + inter_list);
+	      	//System.out.println("intermediate =" + inter_list);
 	      	List<List<String>> sampleDataList = new ArrayList<>(); 
 	      	sampleDataList = lTFD.getListTwo();
 	        System.out.println(sampleDataList);
 	        //totalRows = sampleDataList.size();
 	    // Now store the data to wrappedKeys & wrappedData components for the framework to make use of.
-	        wrappedKeys = new ArrayList<Integer>();
+	        wrappedKeys = new ArrayList<Long>();
 	    
 	    if (!sampleDataList.isEmpty()) {
 	    	
@@ -135,6 +144,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	        }
 	        
 	    }
+      }
     }  
   
     @Override  
