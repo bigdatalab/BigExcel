@@ -11,11 +11,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>progressBarBean</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.progressbar.ProgressBarBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>clientLoadDataCall</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.loaddata.ClientLoadDataCall</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>

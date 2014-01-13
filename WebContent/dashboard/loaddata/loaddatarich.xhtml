@@ -6,21 +6,19 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
 
-<h:head></h:head> 
-<body>
-    <h:form>
-<!--     this table is for error message -->
-    <table style="width:100%;background-color:#7f7f7f; background:#7f7f7f;Serif;" border="3" align="center"> 
-	<tbody>
-	<tr>	
-
-		<!-- <h:outputLabel value="#{loadDataBean.applicationresponse}" style="color:Red;font-size:medium;" rendered="true"></h:outputLabel> -->
-		<!-- <rich:message for="ajax_del_btn" ajaxRendered="true" binding="#{loadDataBean.applicationresponse}"/> -->
-
-	</tr>
-	</tbody>
-	</table>
-		
+<h:head>
+<script src="../java_script/javascript-1.10.2-library.js"></script>
+<script src="../java_script/dataloading.js"></script>
+</h:head> 
+<body> 
+<div id="message_upper" style="display: non; height : 120px; border: solid ; background:#7f7f7f">     
+	<fieldset>
+            <legend>Messages</legend>
+            <h:messages id="messages"/>
+        </fieldset>
+	
+</div>
+	<h:form>
 	<rich:panel style="background-color:#7F7F7F;">
 	<f:facet name="header">
         Delete, Create and Load Files into Tables
@@ -42,14 +40,23 @@
     <h:inputText style="height:20px; width:377px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{loadDataBean.deletequery}"></h:inputText>
     </h:panelGrid>
     
-    <h:panelGrid columns="2" style="height:40px">     
+    <h:panelGrid columns="3" style="height:40px">     
     
-    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}"></a4j:commandButton>
+    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}" render="messages">
+    </a4j:commandButton>
+	
      <a4j:status name="del">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
             </f:facet>
       </a4j:status>
+      
+       <a4j:status name="del">
+             <f:facet name="stop">
+		         Finished Loading...
+            </f:facet>
+      </a4j:status>
+      
     </h:panelGrid>
     </rich:panel>
     </td>
@@ -85,7 +92,8 @@
         <h:inputTextarea id="table_creation_area" style="width:377px;font-size:medium;background:#BFBFBF;background-color:#BFBFBF; height : 86px;" value="#{loadDataBean.createquery}"></h:inputTextarea>
         </h:panelGrid>
         <h:panelGrid columns="2" style="height:40px">
-        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create"></a4j:commandButton>
+        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create" render="messages">
+        </a4j:commandButton>
         <a4j:status name="create">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />

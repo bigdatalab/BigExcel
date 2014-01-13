@@ -1,5 +1,8 @@
 package org.bsanalytics.client.loaddata;
 
+
+
+
 public class LoadDataBean {
 	
 	private static String createquery;

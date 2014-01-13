@@ -1,8 +1,14 @@
 package org.bsanalytics.client.loaddata;
 
 
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
+
+
 
 public class ClientLoadDataCall extends Thread {
 	
@@ -36,6 +42,8 @@ public class ClientLoadDataCall extends Thread {
     	System.out.println(table_string);
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/create_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
+		create_del_query.setApplicationresponse(response);
+		addFacesMessage(response);
 		System.out.println(response);
 		return response;
 	
@@ -47,11 +55,17 @@ public class ClientLoadDataCall extends Thread {
     	String table_string= create_del_query.getDeletequery().trim();
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
-		//setting Response
 		create_del_query.setApplicationresponse(response);
+		addFacesMessage(response);
 		return response;
 	
     }	
+    
+    
+    private static void addFacesMessage(String messageText) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(messageText));
+    }
 	
 }
 
