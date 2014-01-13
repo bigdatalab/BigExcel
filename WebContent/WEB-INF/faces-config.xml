@@ -26,11 +26,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>createTableBean</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.client.loaddata.CreateDeleteTableBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>viewTableBackingBean</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.viewdata.ViewTableBackingBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -58,6 +53,16 @@
 	<managed-bean>
 		<managed-bean-name>pagination</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.viewdata.Pagination</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>createDeleteTableBean</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.loaddata.CreateDeleteTableBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>loadDataBean</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.loaddata.LoadDataBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

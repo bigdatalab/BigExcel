@@ -1,22 +1,16 @@
 package org.bsanalytics.client.loaddata;
 
 
-
-
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
-
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 
-public class ClientLoadDataCall extends Thread implements ActionListener{
+public class ClientLoadDataCall extends Thread {
 	
 	String response_str=null;
 	ClientObject cObj = new ClientObject();
 	RestClient client_wink= cObj.getClientObject();
 	FileChooserForLoadingData choose_file = new FileChooserForLoadingData();
-	CreateDeleteTableBean create_del_query = new CreateDeleteTableBean();
+	LoadDataBean create_del_query = new LoadDataBean();
 	
 	
 	public String sendLoadRequest(){
@@ -38,7 +32,8 @@ public class ClientLoadDataCall extends Thread implements ActionListener{
 	
     public String sendCreateTableRequest(){
     	
-    	String table_string= create_del_query.getQuery().trim(); 
+    	String table_string= create_del_query.getCreatequery().trim();
+    	System.out.println(table_string);
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/create_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
 		System.out.println(response);
@@ -47,25 +42,16 @@ public class ClientLoadDataCall extends Thread implements ActionListener{
     }
     
     
-    public void sendDeleteTableRequest(ActionEvent e){
+    public String sendDeleteTableRequest(){
     	
-    	String table_string= create_del_query.getDelete_table_query().trim();
-    	//Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
-		//String response = resource.accept("text/plain").post(String.class,table_string);
-		String response="Test";
-    	System.out.println(response);
-		//return response;
+    	String table_string= create_del_query.getDeletequery().trim();
+    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
+		String response = resource.accept("text/plain").post(String.class,table_string);
+		//setting Response
+		create_del_query.setApplicationresponse(response);
+		return response;
 	
-    }
-
-
-	@Override
-	public void processAction(ActionEvent arg0) throws AbortProcessingException {
-		String response="Test";
-    	System.out.println(response);
-		
-	}
-
+    }	
 	
 }
 

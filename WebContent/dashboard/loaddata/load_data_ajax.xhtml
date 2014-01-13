@@ -12,35 +12,62 @@
  	<h:form>
     <table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
 	<tbody>
-	<tr><h:inputHidden value="#{createTableBean.delete_table_query}" style="width:100%"></h:inputHidden></tr>
+	<tr></tr>
 	</tbody>
 	</table>
 	
 	<br></br>
 	<br></br>
 	<br></br>
-	<br></br>
-	<br></br>
-	
+	<rich:panel style="background-color:#7F7F7F;">
+	<f:facet name="header">
+        Delete, Create and Load Files into Tables
+        </f:facet>
 	<table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
 	<tbody>
 	
-    <tr><td></td><td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">Delete Table</td><td></td></tr>
+    <tr>
+    
+    <td></td>
+   
+    <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">
+     <rich:panel>
+    <f:facet name="header">
+        Delete Table
+        </f:facet>	
+    <h:panelGrid columns="2">
+    
+    <h:inputText style="height:30px; width:310px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{createTableBean.delete_table_query}"></h:inputText>
+    
+       <a4j:status name="del">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+    
+    <a4j:commandButton value="Delete Table" id="ajax_test_btn" style="height:20px;width:101px;" status="del" execute="@form" actionListener="#{createTableBean.getQueryNameFromFrontEnd}"></a4j:commandButton>
+    
+    </h:panelGrid>
+    </rich:panel>
+    </td>
+	    
+    <td></td>
+    
+    </tr>
+    <!-- 
     <tr><td></td><td><h:inputText style="background-color:#BFBFBF; width : 377px;" value="#{createTableBean.delete_table_query}"></h:inputText></td><td></td>
     </tr>
     <tr><td></td>
-    <td><h:commandButton id="delete_table_btn" value="Delete Table" style=" width : 101px;" >
-     <a4j:actionListener listener="#{actionListenerViewLoadData.handleActionMethod}"/>
-                <f:ajax render="messages"/>
-    </h:commandButton></td>
+    <td><a4j:commandButton value="Ajax test" actionListener="#{actionListenerViewLoadData.testmethod}"></a4j:commandButton></td>
     <td></td>
     </tr>
-	<tr><td></td><td><a4j:commandButton value="Ajax test" actionListener="#{clientLoadDataCall.processAction}"></a4j:commandButton></td></tr>
+    -->
+	<tr><td></td><td></td></tr>
     <tr></tr>
     <tr></tr>
 	
 	<tr><td></td><td style="COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: 'Serif';">Create Table</td><td></td></tr>
-	<tr><td></td><td><h:inputTextarea id="table_creation_area" style="FONT-FAMILY: 'AR PL UMing CN'; background-color:#BFBFBF; width : 377px; height : 103px;" value="#{createTableBean.query}"></h:inputTextarea></td>
+	<tr><td></td><td><h:inputTextarea id="table_creation_area" style="FONT-FAMILY: 'AR PL UMing CN'; background-color:#BFBFBF; width : 377px; height : 103px;" value="#{createTableBean.create_table_query}"></h:inputTextarea></td>
 	<td></td>
 	</tr>
 	<tr><td></td>
@@ -68,6 +95,7 @@
 	
 	</tbody>	
 	</table>
+	</rich:panel>
 	</h:form>
 </body> 
 </html>

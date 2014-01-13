@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body>
+    <h:form>
+<!--     this table is for error message -->
+    <table style="width:100%;background-color:#7f7f7f; background:#7f7f7f;Serif;" border="3" align="center"> 
+	<tbody>
+	<tr>	
+
+		<!-- <h:outputLabel value="#{loadDataBean.applicationresponse}" style="color:Red;font-size:medium;" rendered="true"></h:outputLabel> -->
+		<!-- <rich:message for="ajax_del_btn" ajaxRendered="true" binding="#{loadDataBean.applicationresponse}"/> -->
+
+	</tr>
+	</tbody>
+	</table>
+		
+	<rich:panel style="background-color:#7F7F7F;">
+	<f:facet name="header">
+        Delete, Create and Load Files into Tables
+        </f:facet>
+	<table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
+	<tbody>
+	
+    <tr>
+    
+    <td></td>
+   
+    <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">
+     <rich:panel style=" height : 102px;">
+    <f:facet name="header">
+        Delete Table
+        </f:facet>	
+    
+    <h:panelGrid>
+    <h:inputText style="height:20px; width:377px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{loadDataBean.deletequery}"></h:inputText>
+    </h:panelGrid>
+    
+    <h:panelGrid columns="2" style="height:40px">     
+    
+    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}"></a4j:commandButton>
+     <a4j:status name="del">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+    </h:panelGrid>
+    </rich:panel>
+    </td>
+	    
+    <td></td>
+    
+    </tr>
+<!--     <tr><td></td><td> -->
+    
+<!--     <a4j:outputPanel id="out"> -->
+<!--         <h:outputText value="Hello===== #{loadDataBean.deletequery} !" rendered="#{loadDataBean.deletequery}"/> -->
+<!--     </a4j:outputPanel> -->
+<!--     </td></tr> -->
+    <!-- 
+    <tr><td></td><td><h:inputText style="background-color:#BFBFBF; width : 377px;" value="#{createTableBean.delete_table_query}"></h:inputText></td><td></td>
+    </tr>
+    <tr><td></td>
+    <td><a4j:commandButton value="Ajax test" actionListener="#{actionListenerViewLoadData.testmethod}"></a4j:commandButton></td>
+    <td></td>
+    </tr>
+    -->
+	
+    <tr><td></td><td style="background-color:#F2D58C; height: 5px"></td></tr>
+    
+	
+	<tr><td></td>
+	<td style="COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: 'Serif';">
+	<rich:panel style=" height : 166px;">
+	 <f:facet name="header">
+        Create Table
+        </f:facet>	
+        <h:panelGrid>
+        <h:inputTextarea id="table_creation_area" style="width:377px;font-size:medium;background:#BFBFBF;background-color:#BFBFBF; height : 86px;" value="#{loadDataBean.createquery}"></h:inputTextarea>
+        </h:panelGrid>
+        <h:panelGrid columns="2" style="height:40px">
+        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create"></a4j:commandButton>
+        <a4j:status name="create">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+        </h:panelGrid>
+	</rich:panel>	
+	</td><td></td></tr>
+	<tr><td></td><td style="background-color:#F2D58C; height: 5px"></td><td></td></tr>
+	
+     
+    <tr><td></td>    
+    <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium; width:350px;">
+    <rich:panel style=" height : 103px;">
+    	<f:facet name="header">
+    	Select a file to load
+    	</f:facet>
+    	<h:panelGrid>
+        <h:inputText style="background-color:#BFBFBF; background:#BFBFBF; width : 377px;height:20px"></h:inputText>
+        </h:panelGrid>
+        <h:panelGrid columns="3" style="height:40px">
+        <a4j:commandButton value="Select File" style=" width : 101px;height:20px" action="#{fileChooserForLoading.selectFileFromSystem}"></a4j:commandButton>
+        <a4j:commandButton value="Load" style=" width : 101px;height:20px" action="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
+        <a4j:status name="load">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+        </h:panelGrid>
+    </rich:panel>     
+    </td>
+	<td></td>
+	</tr>
+	
+	</tbody>	
+	</table>
+	</rich:panel>
+	</h:form>
+</body> 
+</html>

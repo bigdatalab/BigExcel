@@ -86,16 +86,49 @@ public class LoadTableFromDataBase {
 		return column_count;
 	}
 	
+	/*not supported*/
+	/*public void checkPrevious(int column_count, int fetch_size){
+		
+		
+		//variable for getting the rows according to fetch_size
+				int check=1;
+				List<String> rows=null;
+		try {
+			while(check<=fetch_size && res.previous()){
+			
+				rows = new ArrayList<>(); 
+				//System.out.println(column_count);
+				int count=1;
+				while (count <= column_count) {  
+					//System.out.println(res.getString(count));
+					//System.out.println(count);
+					String temp = res.getString(count++);
+					if (temp != null){
+						int lenth = temp.length();
+						temp = temp.substring(1, lenth-1);
+						}
+					//System.out.println(temp);  
+					   rows.add(temp);
+			   }
+				System.out.println(rows);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}*/
 	
 	
 	
-	/*public static void main(String args[]){
+	
+	public static void main(String args[]){
 		LoadTableFromDataBase l = new LoadTableFromDataBase();
 	    l.loadDataFromTable("sample");
 	    //System.out.println(l.getRowCount("sample"));
 	    while(true){
 	    	
-	    	if (l.getTCustomRowsList(column_count, 7) == null){
+	    	if (l.getTCustomRowsList(column_count, 2) == null){
 	    		System.out.println("breaking---");
 	    		break;
 	    	}
@@ -106,14 +139,18 @@ public class LoadTableFromDataBase {
 	    	
 	    	try {
 				Thread.sleep(1000);
+				/*l.checkPrevious(column_count,2);
+				System.exit(0);*/
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}    	
 	    	
 	    }
+	    
+	    
         
 	    //System.out.println(l.getTCustomRowsList(6));
-	}*/
+	}
 	
 }

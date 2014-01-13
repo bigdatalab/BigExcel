@@ -7,8 +7,18 @@ import javax.faces.event.ActionListener;
 
 
 public class ActionListenerViewLoadData {
+	
+	private String testmethod;
 
-	   public static final class ActionListenerImpl implements ActionListener {
+	   public String getTestmethod() {
+		return testmethod;
+	}
+
+	public void setTestmethod(String testmethod) {
+		this.testmethod = testmethod;
+	}
+
+	public static final class ActionListenerImpl implements ActionListener {
 
 	        public void processAction(ActionEvent event) throws AbortProcessingException {
 	            //addFacesMessage("Implementation of ActionListener created and called: " + this);
@@ -20,14 +30,18 @@ public class ActionListenerViewLoadData {
 
 	        public void processAction(ActionEvent event) throws AbortProcessingException {
 	            addFacesMessage("Bound listener called...");
-	            System.out.println("Here we go..");
+	            System.out.println("Here we go.. Bounded");
 	        }
 	        
 	    }
 
 	    private ActionListener actionListener = new BoundActionListener();
 	    
-	    private static void addFacesMessage(String messageText) {
+	    public void setActionListener(ActionListener actionListener) {
+			this.actionListener = actionListener;
+		}
+
+		private static void addFacesMessage(String messageText) {
 	        FacesContext context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, new FacesMessage(messageText));
 	    }
@@ -43,5 +57,10 @@ public class ActionListenerViewLoadData {
 	    
 	    public ActionListener getActionListener() {
 	        return actionListener;
+	    }
+	    
+	    public void testmethod(){
+	    	System.out.println("Yes it is---()()()()");
+	    	
 	    }
 }
