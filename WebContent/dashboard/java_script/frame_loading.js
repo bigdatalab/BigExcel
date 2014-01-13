@@ -3,7 +3,6 @@ $(document).ready(function(){
 	    
 	$("#load_form\\:load_link").click(function(){
 		$("#right_side_div").load("./loaddata/loaddatarich.xhtml");
-		alert("clicked");
         });
 	});
 

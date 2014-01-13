@@ -61,11 +61,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<display-name>login/login</display-name>
-		<from-view-id>/login/login.jsp</from-view-id>
+		<display-name>login/login.xhtml</display-name>
+		<from-view-id>/login/login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>login_in</from-outcome>
-			<to-view-id>/dashboard/dashboard_template.xhtml</to-view-id>
+			<to-view-id>/dashboard/dashboardnew_rich.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

@@ -11,19 +11,24 @@
 <script src="../java_script/dataloading.js"></script>
 </h:head> 
 <body> 
-<div id="message_upper" style="display: non; height : 120px; border: solid ; background:#7f7f7f">     
-	<fieldset>
-            <legend>Messages</legend>
-            <h:messages id="messages"/>
-        </fieldset>
+
+<div id="message_upper" style="display: non; height : 30px;background:#7f7f7f">     
+     <rich:message id="messages" style="color:#F2D58C;font-size:large;font-family:Serif;"/>
+	<!-- <fieldset style="height:40px;color:#F2D58C;">
+            <legend>Application Response</legend>
+            
+            
+        </fieldset> -->
 	
 </div>
 	<h:form>
-	<rich:panel style="background-color:#7F7F7F;">
+	
+	<br></br>
+	<rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin;">
 	<f:facet name="header">
-        Delete, Create and Load Files into Tables
+        Delete, Create Tables and Load Files
         </f:facet>
-	<table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
+	<table style="width:100%;background-color:#7f7f7f;Serif;" border="0" align="center"> 
 	<tbody>
 	
     <tr>
@@ -42,21 +47,15 @@
     
     <h:panelGrid columns="3" style="height:40px">     
     
-    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}" render="messages">
+    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}" render="messages">
     </a4j:commandButton>
 	
      <a4j:status name="del">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
             </f:facet>
-      </a4j:status>
-      
-       <a4j:status name="del">
-             <f:facet name="stop">
-		         Finished Loading...
-            </f:facet>
-      </a4j:status>
-      
+      </a4j:status>     
+     
     </h:panelGrid>
     </rich:panel>
     </td>
@@ -92,7 +91,7 @@
         <h:inputTextarea id="table_creation_area" style="width:377px;font-size:medium;background:#BFBFBF;background-color:#BFBFBF; height : 86px;" value="#{loadDataBean.createquery}"></h:inputTextarea>
         </h:panelGrid>
         <h:panelGrid columns="2" style="height:40px">
-        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create" render="messages">
+        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create" render="messages">
         </a4j:commandButton>
         <a4j:status name="create">
              <f:facet name="start">
@@ -115,8 +114,8 @@
         <h:inputText style="background-color:#BFBFBF; background:#BFBFBF; width : 377px;height:20px"></h:inputText>
         </h:panelGrid>
         <h:panelGrid columns="3" style="height:40px">
-        <a4j:commandButton value="Select File" style=" width : 101px;height:20px" action="#{fileChooserForLoading.selectFileFromSystem}"></a4j:commandButton>
-        <a4j:commandButton value="Load" style=" width : 101px;height:20px" action="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
+        <a4j:commandButton value="Select File" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" action="#{fileChooserForLoading.selectFileFromSystem}"></a4j:commandButton>
+        <a4j:commandButton value="Load" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" action="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
         <a4j:status name="load">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
