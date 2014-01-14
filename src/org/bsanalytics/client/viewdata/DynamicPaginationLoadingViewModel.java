@@ -49,6 +49,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	callAPItoGetData();
     	cGson = new ClientSideGsonConversion();
     	initial_partial_flag=0;
+    	map_index=1;
     }
     
     @Override  
@@ -64,7 +65,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     @Override  
     public void walk(FacesContext fc, DataVisitor dv, Range range, Object o) {  
        	  
-    	
+    	System.out.println("--came in walk-1");
 	    firstRow = ((SequenceRange) range).getFirstRow();
 	     numberOfRows = ((SequenceRange) range).getRows();
     	    	
@@ -89,19 +90,30 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	        
 	    }
       }*/
-    	        System.out.println("--came in walk");
+    	        System.out.println("--came in walk " + numberOfRows);
     	 		if (o != null)
     	 		{ 
-    	                  if (initial_partial_flag ==0){
-    	                	  callAPItoGetData();
-    	                	  initial_partial_flag=1;
-    	                	  System.out.println("when initial_partial_flag=0");
-    	                  }
-    	                  else
-    	                  {
-    	                	  System.out.println("when initial_partial_flag=1");
-    	                	  
-    	                  }
+    	 			Resource resource = client_wink.resource(
+    	 			"http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+numberOfRows);
+    	 			String response = resource.accept("text/json").get(String.class);
+    	 			System.out.println(response);
+    	 			cGson.setListForConversion(response);
+    	 			List<List<Object>> list_chunck = new ArrayList<>(); 
+    		      	list_chunck = cGson.getConvertedList();
+    		      	 //wrapping data and their corresponding keys
+    		        wrappedKeys = new ArrayList<Long>();
+    		    
+    		    if (!list_chunck.isEmpty()) {
+    		    	
+    		        for (List<Object> item : list_chunck) {
+    		        	          	
+    		        		wrappedKeys.add(map_index);
+    		    	        wrappedData.put(map_index, item);
+    		    	        dv.process(fc, map_index, o);
+    		    	        map_index++;	        
+    		        }
+    	 			
+    	 		   }
     	 		}
     }  
   
@@ -162,13 +174,17 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	
     }
 
-    public List<List<Object>> callAPItoGetData(){
-    	
+    public int callAPItoGetData(){
+    	System.out.println("Coming====Here");
     	String table_name = table_name_obj.getTable_name();
-    	Resource resource = client_wink.resource(ServerAccessPath.SERVER_PATH +"/bsanalytics/jaxrs/load_data/view_hive_table_initial/"+table_name);
-		String response = resource.accept(MediaType.APPLICATION_JSON).get(String.class);
-		cGson.setListForConversion(response);
-		return cGson.getConvertedList();
+    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+table_name);
+		String response = resource.accept("text/json").get(String.class);
+		System.out.println(response);
+		/*String st1[] = response.split(":");
+		totalRows = Integer.parseInt(st1[1]);*/
+		//cGson.setListForConversion(response);
+		totalRows = Integer.parseInt(response);
+		return totalRows;
     }
     
 }

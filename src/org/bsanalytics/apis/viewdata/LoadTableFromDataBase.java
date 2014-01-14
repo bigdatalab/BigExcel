@@ -16,13 +16,13 @@ public class LoadTableFromDataBase {
 	
 	LoadHiveConnection hcon = new LoadHiveConnection();
 	Statement stmt = hcon.getHiveConnection();
-	List<List<String>> table_rows_list = new ArrayList<>();
+	List<List<Object>> table_rows_list = new ArrayList<>();
 	ResultSetMetaData metadata;
 	ResultSet res;
 	static int column_count;
 	
 	
-	public List<List<String>> loadDataFromTable(String table_name){
+	public List<List<Object>> loadDataFromTable(String table_name){
 		
 		String table_exists = "select * from "+table_name;
 		try {
@@ -37,16 +37,16 @@ public class LoadTableFromDataBase {
 		return table_rows_list;
 	}
 	
-	public List<List<String>> getListTwo(){
+	public List<List<Object>> getListTwo(){
 		return this.table_rows_list;
 	}
 	
 		
-	public List<String> getTCustomRowsList(int column_count, int fetch_size){
+	public List<Object> getTCustomRowsList(int column_count, int fetch_size){
 		
 		//variable for getting the rows according to fetch_size
 		int check=1;
-		List<String> rows=null;
+		List<Object> rows=null;
 		
 		//for accessing fresh chunked data every time
 		table_rows_list = new ArrayList<>();

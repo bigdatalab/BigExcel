@@ -20,7 +20,8 @@ public class LoadData {
 	@Path("/create_hive_table")
 	@Produces("text/plain")
 	public String CreateHiveTable(String table_string){	
-		return new LoadDataLogic().CreateTable(table_string);
+		//return new LoadDataLogic().CreateTable(table_string);
+		return "Hello";
 		
 	}
 		
