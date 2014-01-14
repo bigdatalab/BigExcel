@@ -41,18 +41,15 @@
     	Enter Table Name to View
     	</f:facet>
     	<h:panelGrid>
-    	<h:inputText value="#{viewTableBackingBean.table_name}" style="height:20px; width:377px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;"></h:inputText>
+    	<h:inputText value="#{viewTableBackingBean.table_name}" style="height:20px; width:377px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;" id="table_name">
+    	</h:inputText>
     	</h:panelGrid>
     	<h:panelGrid columns="2">
-    	<a4j:commandButton value="View" type="button" id="view_table_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C" status="del"></a4j:commandButton>
-    	
-    	<a4j:status name="del">
-             <f:facet name="start">
-		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
-            </f:facet>
-      </a4j:status>
-      </h:panelGrid>  
+    	<a4j:commandButton value="View" type="button" id="view_table_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none"></a4j:commandButton>  	
+    	<a4j:commandButton value="Reload" type="button" id="reload_table_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none"></a4j:commandButton>
+        </h:panelGrid>  
     	</rich:panel>
+    	
     	</td>
     	<td></td>
     	</tr>    	
@@ -62,7 +59,7 @@
 		</rich:panel> 	    
     	
 </div>
-
+</h:form>
 <div id="table_view_div" style="height:440px;border-style:solid; overflow-x: scroll;" >
 <br></br>
 <br></br>
@@ -78,7 +75,7 @@
    </div>
 
 </div>
-</h:form>
+
 
 </body> 
 </html>

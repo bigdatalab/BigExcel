@@ -15,9 +15,9 @@
 <body>
  <h:form>
   <div style="height: 50px">
-  <rich:panel>
-   <h:panelGrid columns="2">   
-      <a4j:commandButton value="Next>>" type="button" for="table_data" render="table_data" status="for_status_rendering" style="width:150px;background-color:#F2D58C;background:#F2D58C; height : 35px;"></a4j:commandButton>
+  
+   <h:panelGrid columns="2" style="height:40px">   
+      <a4j:commandButton value="Next>>" type="button" for="table_data" render="table_data" status="for_status_rendering" style="width:101px;background-color:#F2D58C;background:#F2D58C;height:20px;outline:none"></a4j:commandButton>
        	   
          <a4j:status name="for_status_rendering">
              <f:facet name="start">
@@ -25,7 +25,7 @@
             </f:facet>
       </a4j:status>
        </h:panelGrid>
-    </rich:panel>
+    
              </div>
        
  <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="25" id="table_data">  

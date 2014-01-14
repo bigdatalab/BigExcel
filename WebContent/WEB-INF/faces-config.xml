@@ -21,11 +21,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>dynamicDataModel</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.apis.viewdata.DynamicDataModel</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>dataScrollerBeanForViewData</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.viewdata.DataScrollerBeanForViewData</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -33,7 +28,7 @@
 	<managed-bean>
 		<managed-bean-name>dynamicPaginationLoadingViewModel</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.viewdata.DynamicPaginationLoadingViewModel</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>pagination</managed-bean-name>

@@ -8,9 +8,11 @@ import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
 
 public class ViewTableBackingBean {
 
-	private String table_name;
+	private static String table_name;
 	private List<List<String>> table;
 	private List<String> column_names;
+	//DynamicPaginationLoadingViewModel dp = 
+			//new DynamicPaginationLoadingViewModel();
 	
 	public List<String> getColumn_names() {
 		column_names = gettingColumnNames();
@@ -26,11 +28,13 @@ public class ViewTableBackingBean {
 	}
 
 	public String getTable_name() {
+
+
 		return table_name;
 	}
 
 	public void setTable_name(String table_name) {
-		this.table_name = table_name;
+		ViewTableBackingBean.table_name = table_name;
 	}
 	
 	
@@ -60,8 +64,7 @@ public class ViewTableBackingBean {
 		li.add("prince");
 		System.out.println("returning column heres------");
 		return li;
-	}
-	
+	}	
 	
 	
 }

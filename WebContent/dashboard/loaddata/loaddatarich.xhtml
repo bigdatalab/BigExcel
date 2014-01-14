@@ -46,7 +46,7 @@
     
     <h:panelGrid columns="2" style="height:40px">     
     
-    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}" render="messages">
+    <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}" render="messages">
     </a4j:commandButton>
 	
      <a4j:status name="del">
@@ -90,7 +90,7 @@
         <h:inputTextarea id="table_creation_area" style="width:377px;font-size:medium;background:#BFBFBF;background-color:#BFBFBF; height : 86px;" value="#{loadDataBean.createquery}"></h:inputTextarea>
         </h:panelGrid>
         <h:panelGrid columns="2" style="height:40px">
-        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create" render="messages">
+        <a4j:commandButton value="Create Table" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C;outline:none" actionListener="#{clientLoadDataCall.sendCreateTableRequest}" status="create" render="messages">
         </a4j:commandButton>
         <a4j:status name="create">
              <f:facet name="start">
@@ -113,8 +113,8 @@
         <h:inputText style="background-color:#BFBFBF; background:#BFBFBF; width : 377px;height:20px"></h:inputText>
         </h:panelGrid>
         <h:panelGrid columns="3" style="height:40px">
-        <a4j:commandButton value="Select File" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" actionListener="#{fileChooserForLoadingData.selectFileFromSystem}"></a4j:commandButton>
-        <a4j:commandButton value="Load" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" actionListener="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
+        <a4j:commandButton value="Select File" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C;outline:none" actionListener="#{fileChooserForLoadingData.selectFileFromSystem}"></a4j:commandButton>
+        <a4j:commandButton value="Load" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C;outline:none" actionListener="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
         <a4j:status name="load">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />

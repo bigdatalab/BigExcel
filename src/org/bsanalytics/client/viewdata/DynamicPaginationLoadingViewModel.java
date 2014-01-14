@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
+import javax.ws.rs.core.MediaType;
 
 import org.ajax4jsf.model.DataVisitor;
 import org.ajax4jsf.model.ExtendedDataModel;
 import org.ajax4jsf.model.Range;
 import org.ajax4jsf.model.SequenceRange;
+import org.apache.wink.client.Resource;
+import org.apache.wink.client.RestClient;
 import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
+import org.bsanalytics.client.loaddata.ClientObject;
 import org.bsanalytics.client.loaddata.ReadCSVFileNumberCount;
+import org.bsanalytics.dashboard.ServerAccessPath;
 
 public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 
@@ -26,30 +31,24 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	
 	//creating DataBase Connection
     LoadTableFromDataBase lTFD;
+    ViewTableBackingBean table_name_obj;
     ReadCSVFileNumberCount getting_total_rows;
     long map_index;
     int column_count=0;
-
+    ClientObject cObj;
+    RestClient client_wink;
+    int initial_partial_flag;
+    ClientSideGsonConversion cGson;
     
     public DynamicPaginationLoadingViewModel(){
-    	
-    	
-    	lTFD = new LoadTableFromDataBase();
-    	
-    	//executing the database statement
-    	lTFD.loadDataFromTable("sample");
-    	
-    	//getting column count
-    	column_count = lTFD.getColumnCount();
-    	
-    	//reading total number of rows from CSV file
-    	getting_total_rows = new ReadCSVFileNumberCount();
-    	
-    	
-    	totalRows = getting_total_rows.GetLineCount("");
-    	map_index=1;	
-    	
-    	
+    	System.out.println("--came in constructure");
+    	table_name_obj = new ViewTableBackingBean();
+    	cObj = new ClientObject();
+    	client_wink= cObj.getClientObject();
+    	//connectToDBandInitiateCursor();
+    	callAPItoGetData();
+    	cGson = new ClientSideGsonConversion();
+    	initial_partial_flag=0;
     }
     
     @Override  
@@ -65,31 +64,23 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     @Override  
     public void walk(FacesContext fc, DataVisitor dv, Range range, Object o) {  
        	  
-    	try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	     firstRow = ((SequenceRange) range).getFirstRow();
+    	
+	    firstRow = ((SequenceRange) range).getFirstRow();
 	     numberOfRows = ((SequenceRange) range).getRows();
     	    	
 	  //sequence is really important here
-      if (o != null)
+     /* if (o != null)
       {      
 	      	lTFD.getTCustomRowsList(column_count, numberOfRows);
-	      	//System.out.println("intermediate =" + inter_list);
 	      	List<List<String>> list_chunck = new ArrayList<>(); 
 	      	list_chunck = lTFD.getListTwo();
-	        System.out.println(list_chunck);
-	        //totalRows = sampleDataList.size();
-	    // Now store the data to wrappedKeys & wrappedData components for the framework to make use of.
+	        //wrapping data and their corresponding keys
 	        wrappedKeys = new ArrayList<Long>();
 	    
 	    if (!list_chunck.isEmpty()) {
 	    	
 	        for (List<String> item : list_chunck) {
-	        	//System.out.println(item);	        	
+	        	          	
 	        		wrappedKeys.add(map_index);
 	    	        wrappedData.put(map_index, item);
 	    	        dv.process(fc, map_index, o);
@@ -97,7 +88,21 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	        }
 	        
 	    }
-      }
+      }*/
+    	        System.out.println("--came in walk");
+    	 		if (o != null)
+    	 		{ 
+    	                  if (initial_partial_flag ==0){
+    	                	  callAPItoGetData();
+    	                	  initial_partial_flag=1;
+    	                	  System.out.println("when initial_partial_flag=0");
+    	                  }
+    	                  else
+    	                  {
+    	                	  System.out.println("when initial_partial_flag=1");
+    	                	  
+    	                  }
+    	 		}
     }  
   
     @Override  
@@ -136,5 +141,34 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     public void setWrappedData(Object data) {  
         throw new UnsupportedOperationException();  
     }  
+    
+    
+    public void connectToDBandInitiateCursor(){
+    	
+    	lTFD = new LoadTableFromDataBase();
+    	
+    	//executing the database statement
+    	lTFD.loadDataFromTable(table_name_obj.getTable_name());
+    	
+    	//getting column count
+    	column_count = lTFD.getColumnCount();
+    	
+    	//reading total number of rows from CSV file
+    	getting_total_rows = new ReadCSVFileNumberCount();
+    	
+    	
+    	totalRows = getting_total_rows.GetLineCount("");
+    	map_index=1;	
+    	
+    }
+
+    public List<List<Object>> callAPItoGetData(){
+    	
+    	String table_name = table_name_obj.getTable_name();
+    	Resource resource = client_wink.resource(ServerAccessPath.SERVER_PATH +"/bsanalytics/jaxrs/load_data/view_hive_table_initial/"+table_name);
+		String response = resource.accept(MediaType.APPLICATION_JSON).get(String.class);
+		cGson.setListForConversion(response);
+		return cGson.getConvertedList();
+    }
     
 }
