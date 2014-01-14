@@ -15,7 +15,7 @@
 
 
 <style type="text/css"> 
-#panel,#flip
+#panel,#flip,#panel_hdfs,#flip_hdfs
 {
 
 padding:5px;
@@ -24,6 +24,11 @@ background-color:#7F7F7F;
 border:solid 1px #ffffff;
 }
 #panel
+{
+padding:25px;
+display:none;
+}
+#panel_hdfs
 {
 padding:25px;
 display:none;
@@ -44,16 +49,24 @@ display:none;
 <div id="content_whole_page" style="FONT-FAMILY: 'AR PL UMing TW'; height:540px;border:solid;border-width:2">
 <div id="left_side_div" style="height:540px;width:15%;background-color:#BFBFBF;float:left;">
 
-<div id="flip"><a4j:commandButton id="load_data_btn" style="width:100%; height:30px" image="/resources/images/dashboard/load_data.png"></a4j:commandButton></div>
-<div id="panel"
-><h:form id="load_form"><a4j:commandLink id="load_link" value="Load" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()"></a4j:commandLink></h:form>
+<div id="flip"><a4j:commandButton id="load_data_btn" style="width:100%; height:30px;outline:none" image="/resources/images/dashboard/load_data.png"></a4j:commandButton></div>
+<div id="panel">
+<h:form id="load_form"><a4j:commandLink id="load_link" value="Load" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()"></a4j:commandLink></h:form>
 <br></br>
 <h:form id="load_form_view"><a4j:commandLink id="load_link_view" value="View" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()"></a4j:commandLink></h:form>
 </div>
 
-<div id="flip"><a4j:commandButton id="load_data_hdfs" style="width:100%; height:30px" image="/resources/images/dashboard/hdfs.png"></a4j:commandButton></div>
+<div id="flip_hdfs"><a4j:commandButton id="load_data_hdfs" style="width:100%; height:30px;outline:none" image="/resources/images/dashboard/hdfs.png"></a4j:commandButton></div>
+<div id="panel_hdfs">
+<h:form id="upload_form_hdfs"><a4j:commandLink id="upload_hdfs" value="Upload" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()"></a4j:commandLink></h:form>
+<br></br>
+<h:form id="view_form_hdfs"><a4j:commandLink id="view_hdfs" value="View Files" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()"></a4j:commandLink></h:form>
 </div>
 
+
+
+<div id="flip"><a4j:commandButton id="analysis" style="width:100%; height:30px;outline:none" image="/resources/images/dashboard/analysis.png"></a4j:commandButton></div>
+</div>
 
 
 <div id="right_side_div" style="FONT-FAMILY: 'AR PL UMing TW'; float:right; width:85% ; height: 540px ;  overflow-x: scroll;">

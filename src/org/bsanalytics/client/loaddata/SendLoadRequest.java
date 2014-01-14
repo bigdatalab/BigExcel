@@ -8,7 +8,7 @@ public class SendLoadRequest extends Thread {
 	ClientObject cObj = new ClientObject();
 	RestClient client_wink= cObj.getClientObject();
 	FileChooserForLoadingData choose_file = new FileChooserForLoadingData();
-	CreateDeleteTableBean create_del_query = new CreateDeleteTableBean();
+	//LoadTableData create_del_query = new LoadTableData();
 
 	 public void run() {
 		    System.out.println("Thread Started");

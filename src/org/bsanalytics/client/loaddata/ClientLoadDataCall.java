@@ -1,12 +1,8 @@
 package org.bsanalytics.client.loaddata;
 
-
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
+import org.bsanalytics.general.ApplicationMessages;
 
 
 
@@ -17,6 +13,8 @@ public class ClientLoadDataCall extends Thread {
 	RestClient client_wink= cObj.getClientObject();
 	FileChooserForLoadingData choose_file = new FileChooserForLoadingData();
 	LoadDataBean create_del_query = new LoadDataBean();
+	ApplicationMessages faceMessage = new ApplicationMessages();
+		
 	
 	
 	public String sendLoadRequest(){
@@ -38,12 +36,12 @@ public class ClientLoadDataCall extends Thread {
 	
     public String sendCreateTableRequest(){
     	
+    	//setFaceMessageForThisCall("");		
     	String table_string= create_del_query.getCreatequery().trim();
     	System.out.println(table_string);
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/create_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
-		create_del_query.setApplicationresponse(response);
-		addFacesMessage(response);
+		setFaceMessageForThisCall(response);
 		System.out.println(response);
 		return response;
 	
@@ -52,19 +50,20 @@ public class ClientLoadDataCall extends Thread {
     
     public String sendDeleteTableRequest(){
     	
+    	//setFaceMessageForThisCall("");    	
     	String table_string= create_del_query.getDeletequery().trim();
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
-		create_del_query.setApplicationresponse(response);
-		addFacesMessage(response);
+		setFaceMessageForThisCall(response);
 		return response;
 	
     }	
     
-    
-    private static void addFacesMessage(String messageText) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(messageText));
+    public void setFaceMessageForThisCall(String message){
+    	//for setting bean
+    	create_del_query.setApplicationresponse(message);
+		//for message rendering
+		faceMessage.addFacesMessage(message);
     }
 	
 }

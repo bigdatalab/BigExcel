@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+   <rich:panel>
+   Yes its going to display
+    <rich:dataScroller for="sampleData" maxpages="10" id="dsTop" fastcontrols="hide" renderifsinglepage="false" rerender="dsBtm"></rich:dataScroller>
+    <rich:dataTable id="sampleData" rowclasses="greyBg, whiteBg" styleclass="tablesorter" value="#{dynamicDataModel}" var="item" rowkeyvar="row" rows="10" width="674" border="0" cellspacing="0" cellpadding="0">
+        <rich:column sortable="true" sortby="#{item.years}">
+            <f:facet styleclass="header" name="header">
+                <h:outputText value="ID"> </h:outputText>
+            </f:facet>
+            <h:outputText value="#{item.years}"></h:outputText>
+        </rich:column>
+        <rich:column sortable="true" sortby="#{item.firstname}">
+            <f:facet styleclass="header" name="header">
+                <h:outputText value="First Name"></h:outputText>
+            </f:facet>
+            <h:outputText value="#{item.firstname}"></h:outputText>
+        </rich:column>
+        <rich:column sortable="true" sortby="#{item.lastname}">
+            <f:facet styleclass="header" name="header">
+                <h:outputText value="Last Name"></h:outputText>
+            </f:facet>
+            <h:outputText value="#{item.lastname}"></h:outputText>
+        </rich:column>
+    </rich:dataTable>
+    <rich:dataScroller for="sampleData" maxpages="10" id="dsBtm" fastcontrols="hide" renderifsinglepage="false" rerender="dsTop"></rich:dataScroller>
+</rich:panel>
+   
+</html>

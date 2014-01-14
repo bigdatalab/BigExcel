@@ -22,8 +22,7 @@
 	
 </div>
 	<h:form>
-	
-	<br></br>
+		
 	<rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin;">
 	<f:facet name="header">
         Delete, Create Tables and Load Files
@@ -45,7 +44,7 @@
     <h:inputText style="height:20px; width:377px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{loadDataBean.deletequery}"></h:inputText>
     </h:panelGrid>
     
-    <h:panelGrid columns="3" style="height:40px">     
+    <h:panelGrid columns="2" style="height:40px">     
     
     <a4j:commandButton value="Delete Table" id="ajax_del_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C" status="del" actionListener="#{clientLoadDataCall.sendDeleteTableRequest}" render="messages">
     </a4j:commandButton>
@@ -114,8 +113,8 @@
         <h:inputText style="background-color:#BFBFBF; background:#BFBFBF; width : 377px;height:20px"></h:inputText>
         </h:panelGrid>
         <h:panelGrid columns="3" style="height:40px">
-        <a4j:commandButton value="Select File" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" action="#{fileChooserForLoading.selectFileFromSystem}"></a4j:commandButton>
-        <a4j:commandButton value="Load" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" action="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
+        <a4j:commandButton value="Select File" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" actionListener="#{fileChooserForLoadingData.selectFileFromSystem}"></a4j:commandButton>
+        <a4j:commandButton value="Load" style=" width : 101px;height:20px;background-color:#F2D58C;background:#F2D58C" actionListener="#{clientLoadDataCall.sendLoadRequest}" status="load"></a4j:commandButton>
         <a4j:status name="load">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />

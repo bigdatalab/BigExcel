@@ -16,11 +16,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>fileChooserForLoading</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.dashboard.FileChooserForLoadingData</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>viewTableBackingBean</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.viewdata.ViewTableBackingBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -28,11 +23,6 @@
 	<managed-bean>
 		<managed-bean-name>dynamicDataModel</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.apis.viewdata.DynamicDataModel</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>actionListenerViewLoadData</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.ActionListeners.ActionListenerViewLoadData</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -58,6 +48,11 @@
 	<managed-bean>
 		<managed-bean-name>loadDataBean</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.loaddata.LoadDataBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>fileChooserForLoadingData</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.loaddata.FileChooserForLoadingData</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

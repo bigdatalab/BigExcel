@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"
-      xmlns:r="http://richfaces.org/a4j"
+      xmlns:a4j="http://richfaces.org/a4j"
       xmlns:c="http://java.sun.com/jstl/core"> 
 
 <h:head>
@@ -15,22 +15,20 @@
 <body>
  <h:form>
   <div style="height: 50px">
-   <h:panelGrid columns="2">
-   
-      <r:commandButton value="Next" type="button" for="table" status="for_status_rendering" render="table" style="color:White;width:150px;background-color:Black;background:Black; height : 26px;">
-      </r:commandButton>	   
-   
-      <r:status name="for_status_rendering">
+  <rich:panel>
+   <h:panelGrid columns="2">   
+      <a4j:commandButton value="Next>>" type="button" for="table_data" render="table_data" status="for_status_rendering" style="width:150px;background-color:#F2D58C;background:#F2D58C; height : 35px;"></a4j:commandButton>
+       	   
+         <a4j:status name="for_status_rendering">
              <f:facet name="start">
-		         <h:graphicImage value="../../resources/images/progress/table_loader.gif" alt="not displaying" />
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
             </f:facet>
-      </r:status>
+      </a4j:status>
        </h:panelGrid>
-             
+    </rich:panel>
              </div>
-     
-  
- <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="25" id="table">  
+       
+ <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="25" id="table_data">  
                
          <c:forEach items="#{pagination.columns}" var="iterate_value"  varStatus="subscript">
          <rich:column>

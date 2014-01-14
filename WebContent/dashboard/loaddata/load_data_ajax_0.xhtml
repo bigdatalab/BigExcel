@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"> 
+
+<h:head></h:head> 
+<body>
+ 	<h:form>
+    <table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
+	<tbody>
+	<tr></tr>
+	</tbody>
+	</table>
+	
+	<br></br>
+	<br></br>
+	<br></br>
+	<rich:panel style="background-color:#7F7F7F;">
+	<f:facet name="header">
+        Delete, Create and Load Files into Tables
+        </f:facet>
+	<table style="width:100%;background-color:#7f7f7f;Serif;" border="3" align="center"> 
+	<tbody>
+	
+    <tr>
+    
+    <td></td>
+   
+    <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">
+     <rich:panel>
+    <f:facet name="header">
+        Delete Table
+        </f:facet>	
+    <h:panelGrid columns="2">
+    
+    <h:inputText style="height:30px; width:310px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{createTableBean.delete_table_query}"></h:inputText>
+    
+       <a4j:status name="del">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+    
+    <a4j:commandButton value="Delete Table" id="ajax_test_btn" style="height:20px;width:101px;" status="del" execute="@form" actionListener="#{createTableBean.getQueryNameFromFrontEnd}"></a4j:commandButton>
+    
+    </h:panelGrid>
+    </rich:panel>
+    </td>
+	    
+    <td></td>
+    
+    </tr>
+    <!-- 
+    <tr><td></td><td><h:inputText style="background-color:#BFBFBF; width : 377px;" value="#{createTableBean.delete_table_query}"></h:inputText></td><td></td>
+    </tr>
+    <tr><td></td>
+    <td><a4j:commandButton value="Ajax test" actionListener="#{actionListenerViewLoadData.testmethod}"></a4j:commandButton></td>
+    <td></td>
+    </tr>
+    -->
+	<tr><td></td><td></td></tr>
+    <tr></tr>
+    <tr></tr>
+	
+	<tr><td></td><td style="COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: 'Serif';">Create Table</td><td></td></tr>
+	<tr><td></td><td><h:inputTextarea id="table_creation_area" style="FONT-FAMILY: 'AR PL UMing CN'; background-color:#BFBFBF; width : 377px; height : 103px;" value="#{createTableBean.create_table_query}"></h:inputTextarea></td>
+	<td></td>
+	</tr>
+	<tr><td></td>
+	<td><h:commandButton value="Create Table" style=" width : 101px;" action="#{clientLoadDataCall.sendCreateTableRequest}"></h:commandButton></td>
+	<td></td>
+	</tr>
+   
+    
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+	<tr><td></td><td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium; width:350px;">Select a file to load </td>
+	<td></td>
+	</tr>
+	<tr><td></td>
+	<td style=" width : 382px;"><h:inputText style="background-color:#BFBFBF; width : 377px;"></h:inputText></td>
+	<td></td>
+	</tr>
+	<tr><td></td>
+	<td><h:commandButton value="Select File" style=" width : 101px;" action="#{fileChooserForLoading.selectFileFromSystem}"></h:commandButton>
+	<h:commandButton value="Load" style=" width : 101px;" action="#{clientLoadDataCall.sendLoadRequest}"></h:commandButton>
+	</td>
+	<td></td>
+	</tr>
+	
+	</tbody>	
+	</table>
+	</rich:panel>
+	</h:form>
+</body> 
+</html>

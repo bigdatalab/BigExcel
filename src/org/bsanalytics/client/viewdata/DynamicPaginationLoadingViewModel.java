@@ -65,6 +65,12 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     @Override  
     public void walk(FacesContext fc, DataVisitor dv, Range range, Object o) {  
        	  
+    	try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	     firstRow = ((SequenceRange) range).getFirstRow();
 	     numberOfRows = ((SequenceRange) range).getRows();
     	    	
