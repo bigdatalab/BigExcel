@@ -12,7 +12,7 @@ public class ClientSideGsonConversion {
 	List<List<Object>> converted_list;
 	
 	@SuppressWarnings("unchecked")
-	List<List<Object>> getConvertedList(){
+	public List<List<Object>> getConvertedList(){
 		converted_list = new ArrayList<>();
 		converted_list = gson_lib.fromJson(this.list, List.class);
 		return converted_list;

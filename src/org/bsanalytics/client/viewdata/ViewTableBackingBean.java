@@ -43,7 +43,7 @@ public class ViewTableBackingBean {
 		LoadTableFromDataBase lTFD = new LoadTableFromDataBase();
 		table_name = "years_frequency";
 		System.out.println("Table Name=" + table_name);
-		table=lTFD.loadDataFromTable(table_name);
+		//table=lTFD.loadDataFromTable(table_name);
 		
 		
 		return table;

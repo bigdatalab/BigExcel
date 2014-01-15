@@ -92,10 +92,8 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
       }*/
     	        System.out.println("--came in walk " + numberOfRows);
     	 		if (o != null)
-    	 		{ 
-    	 			Resource resource = client_wink.resource(
-    	 			"http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+numberOfRows);
-    	 			String response = resource.accept("text/json").get(String.class);
+    	 		{     	 			
+    	 			String response = callAPItoGetPartialData();
     	 			System.out.println(response);
     	 			cGson.setListForConversion(response);
     	 			List<List<Object>> list_chunck = new ArrayList<>(); 
@@ -160,10 +158,10 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	lTFD = new LoadTableFromDataBase();
     	
     	//executing the database statement
-    	lTFD.loadDataFromTable(table_name_obj.getTable_name());
+    	LoadTableFromDataBase.loadDataFromTable(table_name_obj.getTable_name());
     	
     	//getting column count
-    	column_count = lTFD.getColumnCount();
+    	column_count = LoadTableFromDataBase.getColumnCount();
     	
     	//reading total number of rows from CSV file
     	getting_total_rows = new ReadCSVFileNumberCount();
@@ -175,16 +173,20 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     }
 
     public int callAPItoGetData(){
-    	System.out.println("Coming====Here");
     	String table_name = table_name_obj.getTable_name();
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+table_name);
 		String response = resource.accept("text/json").get(String.class);
 		System.out.println(response);
-		/*String st1[] = response.split(":");
-		totalRows = Integer.parseInt(st1[1]);*/
-		//cGson.setListForConversion(response);
 		totalRows = Integer.parseInt(response);
 		return totalRows;
+    }
+    
+    public String callAPItoGetPartialData(){
+    	
+    	Resource resource = client_wink.resource(
+	 			"http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+numberOfRows+"/data");
+	 			String response = resource.accept("text/json").get(String.class);
+	 			return response;
     }
     
 }

@@ -1,13 +1,9 @@
 package org.bsanalytics.apis.viewdata;
 
-import java.util.List;
-
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 
 @Path("/view_data")
@@ -19,18 +15,19 @@ public class LoadTable {
 	@Produces("text/json")
 	public String connectionEstablishement(
 			@PathParam("table_name") String table_name){	
-        return new LoadTableLogic().initializeDBConnection(table_name);
+        return LoadTableLogic.initializeDBConnection(table_name);
 		
 		
 	}
 	
 	
 	@GET
-	@Path("/{fetch_size}")
+	@Path("/{fetch_size}/{data}")
 	@Produces("text/json")
-	public List<List<Object>> loadInitialDataFromToHiveTable(
-			@PathParam("fetch_size") String fetch_size){
-		return new LoadTableLogic().getInitialTable(fetch_size);		
+	public String loadInitialDataFromToHiveTable(
+			@PathParam("fetch_size") String fetch_size,
+			@PathParam("fetch_size") String data){
+		return LoadTableLogic.getInitialTable(fetch_size);		
 		
 	}
 	

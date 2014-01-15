@@ -14,15 +14,14 @@ import org.bsanalytics.hive.LoadHiveConnection;
 public class LoadTableFromDataBase {
 	
 	
-	LoadHiveConnection hcon = new LoadHiveConnection();
-	Statement stmt = hcon.getHiveConnection();
-	List<List<Object>> table_rows_list = new ArrayList<>();
-	ResultSetMetaData metadata;
-	ResultSet res;
+	static LoadHiveConnection hcon = new LoadHiveConnection();
+	static Statement stmt = hcon.getHiveConnection();
+	static List<List<Object>> table_rows_list = new ArrayList<>();
+	static ResultSetMetaData metadata;
+	static ResultSet res;
 	static int column_count;
 	
-	
-	public List<List<Object>> loadDataFromTable(String table_name){
+	public static List<List<Object>> loadDataFromTable(String table_name){
 		
 		String table_exists = "select * from "+table_name;
 		try {
@@ -37,12 +36,12 @@ public class LoadTableFromDataBase {
 		return table_rows_list;
 	}
 	
-	public List<List<Object>> getListTwo(){
-		return this.table_rows_list;
+	public static List<List<Object>> getListTwo(){
+		return table_rows_list;
 	}
 	
 		
-	public List<Object> getTCustomRowsList(int column_count, int fetch_size){
+	public static List<Object> getTCustomRowsList(int column_count, int fetch_size){
 		
 		//variable for getting the rows according to fetch_size
 		int check=1;
@@ -82,7 +81,7 @@ public class LoadTableFromDataBase {
 			return null;
 		}		
 }
-	public int getColumnCount(){
+	public static int getColumnCount(){
 		return column_count;
 	}
 	
