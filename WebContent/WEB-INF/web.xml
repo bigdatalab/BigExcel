@@ -9,6 +9,9 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!--Servlet for load data -->
+  
   <servlet>
     <description>JAX-RS Tools Generated - Do not modify</description>
     <servlet-name>JAX-RS Servlet</servlet-name>
@@ -16,36 +19,41 @@
      <init-param>
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>org.bsanalytics.apis.loaddata.LoadDataServlet</param-value>			
-	</init-param>	
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  
-  
-  <servlet>
+	</init-param>		
+	 <init-param>
+         <param-name>requestProcessorAttribute</param-name>
+         <param-value>load_data_servlet</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
+  </servlet>   
+  <servlet-mapping>
+    <servlet-name>JAX-RS Servlet</servlet-name>
+    <url-pattern>/jaxrs_load/*</url-pattern>
+  </servlet-mapping>
+    
+    
+    <!--Servlet for view data -->
+   
+    <servlet>
     <description>JAX-RS Tools Generated - Do not modify</description>
     <servlet-name>View Servlet</servlet-name>
     <servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
      <init-param>
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>org.bsanalytics.apis.viewdata.ViewDataServlet</param-value>			
-	</init-param>	
-    <load-on-startup>1</load-on-startup>
+	</init-param>    
+	<init-param>
+         <param-name>requestProcessorAttribute</param-name>
+         <param-value>view_data_servlet</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
   </servlet>
-  
-  
-  
-  <servlet-mapping>
-    <servlet-name>JAX-RS Servlet</servlet-name>
-    <url-pattern>/jaxrs/*</url-pattern>
-  </servlet-mapping>
-    
-
 <servlet-mapping>
     <servlet-name>View Servlet</servlet-name>
     <url-pattern>/jaxrs_view/*</url-pattern>
   </servlet-mapping>
    
-    
+   
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

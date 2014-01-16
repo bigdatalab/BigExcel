@@ -1,13 +1,19 @@
 package org.bsanalytics.client.loaddata;
 
+import java.util.List;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.bsanalytics.general.client.CSVHandler;
+import org.bsanalytics.general.client.SelectedFilePath;
 
 public class FileChooserForLoadingData {
 	
 	JFileChooser chooser = new JFileChooser();
 	private static String file_name;
 	private static String absolute_path;
+	public static int total_csv_file_rows;
 	
 	public String selectFileFromSystem(){
 		
@@ -20,8 +26,15 @@ public class FileChooserForLoadingData {
 		    	file_name=chooser.getSelectedFile().getName();
 		    	absolute_path = chooser.getSelectedFile().getAbsolutePath();
 		    	
+		    	//setting the absolute path for accessing the appliaction
+		    	//SelectedFilePath.file_path_from_the_disk=absolute_path;
+		    	
 		    	//getting column names
-		    	getCsvFileColumnNamesUsingAsbPath(absolute_path);
+		    	//getCsvFileColumnNamesUsingAsbPath(absolute_path);
+		    	
+		    	//getting row count of csv file
+		    	total_csv_file_rows = getCsvRowCount(absolute_path);
+		    	
 		       System.out.println("You chose to open this file: " +file_name);
 		       System.out.println("You chose file path: " +absolute_path);
 		    }
@@ -37,10 +50,17 @@ public class FileChooserForLoadingData {
 		return absolute_path;
 	}
 	
-	public String[] getCsvFileColumnNamesUsingAsbPath(String path){
+	public List<String> getCsvFileColumnNamesUsingAsbPath(String path){
 		   CSVHandler csvH = new CSVHandler();
-		   String column_name[] = csvH.getColumnNamesFromCsvFile(path);
+		   List<String> column_name = csvH.getColumnNamesFromCsvFile(path);
 		return column_name;
+		
+	}
+	
+	public int getCsvRowCount(String file_absolute_path){
+		
+		ReadCSVFileRowCount rcsv_row_count =  new ReadCSVFileRowCount();
+		return rcsv_row_count.GetLineCount(file_absolute_path);
 		
 	}
 

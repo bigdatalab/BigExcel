@@ -2,7 +2,7 @@ package org.bsanalytics.client.loaddata;
 
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
-import org.bsanalytics.general.ApplicationMessages;
+import org.bsanalytics.general.client.ApplicationMessages;
 
 
 
@@ -23,14 +23,27 @@ public class ClientLoadDataCall extends Thread {
 	    String file_path = choose_file.getPath();
 	    String path_and_file = file_path + ":" + file_name;*/
 	    //starting Thread
-	    new SendLoadRequest().start();
+	    //new SendLoadRequest().start();
 	    /*Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/load_hive_data");
 		String response = resource.accept("text/plain").post(String.class,path_and_file);
 		
 		response_str = response.toString();
 		System.out.println(response_str);
 		return response_str;*/
-	    return "";
+		
+		int total_csv_file_rows = choose_file.total_csv_file_rows;		
+	    String file_name = choose_file.getFileName();
+	    String file_path = choose_file.getPath();
+	    String path_and_file = file_path + ":" + file_name +
+	    		":" + Integer.toString(total_csv_file_rows);
+	    
+	    System.out.println("Three = " + path_and_file);
+	    
+	    	    
+	    Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_load/load_data/load_hive_data");
+		String response = resource.accept("text/plain").post(String.class,path_and_file);
+		System.out.println(response);		
+	    return response;
 		
 	}
 	
@@ -39,7 +52,7 @@ public class ClientLoadDataCall extends Thread {
     	//setFaceMessageForThisCall("");		
     	String table_string= create_del_query.getCreatequery().trim();
     	System.out.println(table_string);
-    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/create_hive_table");
+    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_load/load_data/create_hive_table");
 		String response = resource.accept("text/plain").post(String.class,table_string);
 		setFaceMessageForThisCall(response);
 		System.out.println(response);
@@ -50,10 +63,13 @@ public class ClientLoadDataCall extends Thread {
     
     public String sendDeleteTableRequest(){
     	
-    	//setFaceMessageForThisCall("");    	
+    	
     	String table_string= create_del_query.getDeletequery().trim();
-    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/delete_hive_table");
+    	System.out.println("query = " + table_string);
+    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_load/load_data/delete_hive_table");
+    	System.out.println("After Web Call");
 		String response = resource.accept("text/plain").post(String.class,table_string);
+		System.out.println("After Getting response");
 		setFaceMessageForThisCall(response);
 		return response;
 	

@@ -16,7 +16,7 @@ public class SendLoadRequest extends Thread {
 		    String file_path = choose_file.getPath();
 		    String path_and_file = file_path + ":" + file_name;
 		    
-		    Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs/load_data/load_hive_data");
+		    Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_load/load_data/load_hive_data");
 			String response = resource.accept("text/plain").post(String.class,path_and_file);
 			System.out.println(response);
 	    }

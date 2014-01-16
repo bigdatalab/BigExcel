@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.bsanalytics.general.server.SQLLiteDBAccess;
 import org.bsanalytics.hadoop.AccessHadoopFileSystem;
 import org.bsanalytics.hive.LoadHiveConnection;
 
@@ -12,16 +13,27 @@ public class LoadDataLogic {
 	static String LOAD_HDFS = "hdfs dfs -copyFromLocal";
 	
 	LoadHiveConnection hcon = new LoadHiveConnection();
-	Statement stmt = hcon.getHiveConnection();
+	Statement stmt_hive = hcon.getHiveConnection();
 	AccessHadoopFileSystem hadoop_file_system =  new AccessHadoopFileSystem();
+	SQLLiteDBAccess sqlLiteDB=null;	
+	Statement stmt_sqlite = null;	
 	
 	public String LoadData(String file_name_path){
 		String table_name=null;
 		
 		try {
+			
+			//both statement are for SQLite
+			//sqlLiteDB = new SQLLiteDBAccess();
+			//stmt_sqlite = getConnectionToSQLLite(); 
+			
 			table_name = getTableName(file_name_path);
 			String file_name = getFileName(file_name_path);
 			String path = getPathName(file_name_path);
+			
+			//insert csv information to sql_lite data-base
+			//insertCSVInformationIntoSQLLite(table_name,
+				//	getTotalNumberOfRowsInCSVFile(file_name_path));
 			
 			boolean result = checkTableExists(table_name);
 			
@@ -30,7 +42,7 @@ public class LoadDataLogic {
 				LoadFiletoHDFS(file_name,path);
 				String sql= "load data inpath '"+file_name+"' into table "+ table_name;
 				System.out.println(sql);
-				stmt.executeUpdate(sql);
+				stmt_hive.executeUpdate(sql);
 			}
 			else
 				return "Table " + "'"+table_name +"'"+ " Not Found";
@@ -67,7 +79,7 @@ public class LoadDataLogic {
 		
 		try {
 			
-			stmt.executeUpdate(table_string + " row format delimited fields terminated by ',' stored as textfile");
+			stmt_hive.executeUpdate(table_string + " row format delimited fields terminated by ',' stored as textfile");
 			
 		} catch (SQLException e) {
 			return "Table already exists";
@@ -86,7 +98,7 @@ public class LoadDataLogic {
 			return "Table not exists";
 		
 		try {
-			stmt.executeUpdate(sql);
+			stmt_hive.executeUpdate(sql);
 										
 		} catch (SQLException e) {
 			return "Deletion Not Successfull";
@@ -133,12 +145,19 @@ public class LoadDataLogic {
 	
 	}
 	
+	public int getTotalNumberOfRowsInCSVFile(String file_name_path){
+		
+		String[] file_path_and_name = file_name_path.split(":");
+	 	 return Integer.parseInt(file_path_and_name[2]);
+		
+	}
+	
 	
 	public boolean checkTableExists(String table_name){
 		
 		String table_exists = "select * from "+table_name;
 		try {
-			ResultSet res = stmt.executeQuery(table_exists);
+			ResultSet res = stmt_hive.executeQuery(table_exists);
 			if (res != null)
 				return true;
 			else
@@ -149,6 +168,47 @@ public class LoadDataLogic {
 		}
 		
 		
+	}
+	
+	public Statement getConnectionToSQLLite(){		
+		return sqlLiteDB.getLocalSQLLiteDBConnection();		
+	}
+	
+	
+	public void insertCSVInformationIntoSQLLite(String table_name, int total_number_of_rows){
+		
+		System.out.println("table name =" + table_name);
+		
+		String sql = "select * from " + table_name;
+		
+		String sql_create = "create csv_information " +
+                "(tablename TEXT NOT NULL," +
+                "rows INT NOT NULL)";
+		String sql_insert = "insert into csv_information (tablename,rows)" +
+                "VALUES("+"'"+table_name+"',"+ total_number_of_rows+");";
+		
+		try{
+			
+			stmt_sqlite.executeQuery(sql);
+						
+		}catch(Exception ex){		 
+		    //if table not exists
+			try {
+				stmt_sqlite.executeQuery(sql_create);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		//update the table
+		try{
+			stmt_sqlite.executeUpdate(sql_insert);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+
 	}
 
 }

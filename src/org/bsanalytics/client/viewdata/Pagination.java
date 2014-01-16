@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
-import org.bsanalytics.client.loaddata.ReadCSVFileNumberCount;
+import org.bsanalytics.general.client.CSVHandler;
+import org.bsanalytics.general.client.SelectedFilePath;
 
 public class Pagination {
 	
@@ -13,6 +14,7 @@ public class Pagination {
 	String first_name;
 	String second_name;
 	int flag=0;
+	CSVHandler csv_dat = new CSVHandler();
 
 	
 	public String getFirst_name() {
@@ -113,6 +115,7 @@ public class Pagination {
 		 /*li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");
 		 li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");
 		 li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");*/
+		 //li = csv_dat.getColumnNamesFromCsvFile(SelectedFilePath.file_path_from_the_disk);
 		 return li;
 		 
 	}  

@@ -16,7 +16,7 @@ import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
 import org.bsanalytics.client.loaddata.ClientObject;
-import org.bsanalytics.client.loaddata.ReadCSVFileNumberCount;
+import org.bsanalytics.client.loaddata.ReadCSVFileRowCount;
 import org.bsanalytics.dashboard.ServerAccessPath;
 
 public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
@@ -32,7 +32,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 	//creating DataBase Connection
     LoadTableFromDataBase lTFD;
     ViewTableBackingBean table_name_obj;
-    ReadCSVFileNumberCount getting_total_rows;
+    ReadCSVFileRowCount getting_total_rows;
     long map_index;
     int column_count=0;
     ClientObject cObj;
@@ -164,7 +164,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	column_count = LoadTableFromDataBase.getColumnCount();
     	
     	//reading total number of rows from CSV file
-    	getting_total_rows = new ReadCSVFileNumberCount();
+    	getting_total_rows = new ReadCSVFileRowCount();
     	
     	
     	totalRows = getting_total_rows.GetLineCount("");
