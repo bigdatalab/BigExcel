@@ -8,6 +8,9 @@ import java.sql.Statement;
 
 public class LoadHiveConnection {
 	
+	Connection con;
+	
+	
 	public static void main(String args[])
 	{
 		new LoadHiveConnection().getHiveConnection();
@@ -27,7 +30,7 @@ public class LoadHiveConnection {
 		
 		
 		
-			Connection con;
+			
 			/*ResultSet res=null;*/
 			try {
 			
@@ -63,6 +66,17 @@ public class LoadHiveConnection {
 			}
 			return null;
 	}	
+	
+	
+	public void closeHiveConnection(){
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 
 }

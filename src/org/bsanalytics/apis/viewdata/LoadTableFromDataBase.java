@@ -29,6 +29,12 @@ public class LoadTableFromDataBase {
 			res = stmt.executeQuery(table_exists);			
 			metadata = res.getMetaData();
 			column_count = metadata.getColumnCount();
+			
+			for(int i=1 ; i<=column_count ; i++){
+			 List<String> li = new ArrayList<>();
+			 System.out.println(li.add(metadata.getColumnLabel(i)));
+			}
+			
 		
 		} catch (SQLException e) {
 			e.printStackTrace();		}

@@ -42,6 +42,7 @@ public class ClientLoadDataCall extends Thread {
 	    	    
 	    Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_load/load_data/load_hive_data");
 		String response = resource.accept("text/plain").post(String.class,path_and_file);
+		setFaceMessageForThisCall(response);
 		System.out.println(response);		
 	    return response;
 		

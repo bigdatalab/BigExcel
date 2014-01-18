@@ -18,6 +18,7 @@ import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
 import org.bsanalytics.client.loaddata.ClientObject;
 import org.bsanalytics.client.loaddata.ReadCSVFileRowCount;
 import org.bsanalytics.dashboard.ServerAccessPath;
+import org.bsanalytics.general.client.ClientSideGsonConversion;
 
 public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
 
@@ -45,9 +46,9 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	table_name_obj = new ViewTableBackingBean();
     	cObj = new ClientObject();
     	client_wink= cObj.getClientObject();
+    	cGson = new ClientSideGsonConversion();
     	//connectToDBandInitiateCursor();
     	callAPItoGetData();
-    	cGson = new ClientSideGsonConversion();
     	initial_partial_flag=0;
     	map_index=1;
     }
@@ -172,14 +173,21 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	
     }
 
+    //first call
     public int callAPItoGetData(){
     	String table_name = table_name_obj.getTable_name();
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+table_name);
 		String response = resource.accept("text/json").get(String.class);
 		System.out.println(response);
+		//String tmp_string[] = response.split(":");
 		totalRows = Integer.parseInt(response);
+		//System.out.println(tmp_string[1]);
+		//cGson.setSingleListForConversion(tmp_string[1].toString());
+		//Pagination.column_names_list = cGson.getSingleConvertedList();
 		return totalRows;
     }
+    
+    //second call
     
     public String callAPItoGetPartialData(){
     	

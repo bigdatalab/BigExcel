@@ -3,8 +3,12 @@ package org.bsanalytics.client.viewdata;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wink.client.Resource;
+import org.apache.wink.client.RestClient;
 import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
+import org.bsanalytics.client.loaddata.ClientObject;
 import org.bsanalytics.general.client.CSVHandler;
+import org.bsanalytics.general.client.ClientSideGsonConversion;
 import org.bsanalytics.general.client.SelectedFilePath;
 
 public class Pagination {
@@ -14,7 +18,13 @@ public class Pagination {
 	String first_name;
 	String second_name;
 	int flag=0;
-	CSVHandler csv_dat = new CSVHandler();
+	ClientObject cObj = new ClientObject();
+    RestClient client_wink = cObj.getClientObject();
+    ViewTableBackingBean table_name_obj = new ViewTableBackingBean();
+    ClientSideGsonConversion cGson = new ClientSideGsonConversion();
+    
+	//CSVHandler csv_dat = new CSVHandler();
+	static List<String> column_names_list;
 
 	
 	public String getFirst_name() {
@@ -107,16 +117,24 @@ public class Pagination {
 	}
 	
 	public List<String> takeColumns(){
-		 List<String> li = new ArrayList<String>();
+		 /*List<String> li = new ArrayList<String>();
 		 li.add("FirstName");
 		 li.add("LastName");li.add("Company");li.add("Address");li.add("City");
 		 li.add("County");li.add("State");li.add("Zip");li.add("Phone1");
-		 li.add("Phone2");li.add("Email");li.add("Web");
+		 li.add("Phone2");li.add("Email");li.add("Web");*/
 		 /*li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");
 		 li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");
 		 li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");li.add("Web");*/
 		 //li = csv_dat.getColumnNamesFromCsvFile(SelectedFilePath.file_path_from_the_disk);
-		 return li;
+		 //return li;
+		
+		String table_name = table_name_obj.getTable_name();
+    	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+table_name+"/l/c");
+		String response = resource.accept("text/json").get(String.class);
+		cGson.setSingleListForConversion(response);
+		//Pagination.column_names_list = cGson.getSingleConvertedList();
+		System.out.println(response);
+		return cGson.getSingleConvertedList();
 		 
 	}  
 

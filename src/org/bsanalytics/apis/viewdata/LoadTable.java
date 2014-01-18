@@ -32,6 +32,16 @@ public class LoadTable {
 	}
 	
 	
+	@GET
+	@Path("/{table_name}/{load}/{columns}")	
+	@Produces("text/json")
+	public String load_columns(
+			@PathParam("table_name") String table_name){	
+        return LoadTableLogic.getcolumnNamesonFirstCall(table_name);
+		
+		
+	}
+	
 /*	@GET
 	@Path("/{table_name}/{column_count}/{fetch_size}/{partial}")
 	@Produces("text/json")
