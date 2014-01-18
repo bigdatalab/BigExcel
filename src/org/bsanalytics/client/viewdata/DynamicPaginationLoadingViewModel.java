@@ -18,6 +18,7 @@ import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
 import org.bsanalytics.client.loaddata.ClientObject;
 import org.bsanalytics.client.loaddata.ReadCSVFileRowCount;
 import org.bsanalytics.dashboard.ServerAccessPath;
+import org.bsanalytics.general.client.ApplicationMessages;
 import org.bsanalytics.general.client.ClientSideGsonConversion;
 
 public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
@@ -40,6 +41,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     RestClient client_wink;
     int initial_partial_flag;
     ClientSideGsonConversion cGson;
+    //ApplicationMessages faceMessage;
     
     public DynamicPaginationLoadingViewModel(){
     	System.out.println("--came in constructure");
@@ -47,6 +49,7 @@ public class DynamicPaginationLoadingViewModel extends ExtendedDataModel{
     	cObj = new ClientObject();
     	client_wink= cObj.getClientObject();
     	cGson = new ClientSideGsonConversion();
+    	//faceMessage = new ApplicationMessages();
     	//connectToDBandInitiateCursor();
     	callAPItoGetData();
     	initial_partial_flag=0;

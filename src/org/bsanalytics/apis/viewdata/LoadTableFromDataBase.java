@@ -37,7 +37,13 @@ public class LoadTableFromDataBase {
 			
 		
 		} catch (SQLException e) {
-			e.printStackTrace();		}
+			List<List<Object>> li = new ArrayList<>();
+			List<Object> lii = new ArrayList<>();
+			lii.add("Table not exists");
+			li.add(lii);
+			return li;
+			//e.printStackTrace();		}			
+		}
 		
 		return table_rows_list;
 	}

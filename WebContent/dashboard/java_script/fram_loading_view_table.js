@@ -11,6 +11,7 @@
 
 
 $(document).ready(function(){
+location.reload(true);
 $(this).on("click", "#table_view_form\\:view_table_btn" ,function(){
 $("#table_view_div").load("./loadtable_rich.xhtml");	
     
@@ -18,6 +19,7 @@ $("#table_view_div").load("./loadtable_rich.xhtml");
 });
 
 $(document).ready(function(){
+	location.reload(true);
 	$(this).on("click", "#table_view_form\\:reload_table_btn" ,function(){
 	$("#table_view_div").load("./loadtable_rich.xhtml");	
 	    

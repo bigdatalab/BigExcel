@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bsanalytics.apis.loaddata.LoadDataLogic;
 import org.bsanalytics.client.loaddata.ReadCSVFileRowCount;
 import org.bsanalytics.general.server.SQLLiteDBAccess;
 import org.bsanalytics.general.server.ServerSideGsonConversion;
@@ -18,7 +19,7 @@ public class LoadTableLogic {
     private static Integer totalRows;
     static ServerSideGsonConversion gson_conv = new ServerSideGsonConversion();
     static SQLLiteDBAccess sqlLiteDB = new SQLLiteDBAccess();
-    static Statement stmt_sqlite = sqlLiteDB.getLocalSQLLiteDBConnection();
+    //static Statement stmt_sqlite = sqlLiteDB.getLocalSQLLiteDBConnection();
 	
 	
 	public static String initializeDBConnection(String table_name){
@@ -66,9 +67,9 @@ public class LoadTableLogic {
 		
 		
 		int total_rows=0;
-		String sql = "select * from " + table_name;
+		String sql = "select * from tables_metadata where table_name="+"'"+table_name+"'";
 		try {
-			ResultSet res = stmt_sqlite.executeQuery(sql);
+			ResultSet res = LoadDataLogic.stmt_sqlite.executeQuery(sql);
 			
 			while(res.next()){
 				total_rows = res.getInt("total_rows");
@@ -89,12 +90,12 @@ public static String getcolumnNames(String table_name){
 		
 		
 		String column_names = null;
-		String sql = "select * from " + table_name+"_columns";
+		String sql = "select * from tables_metadata where table_name="+"'"+table_name+"'";
 		try {
-			ResultSet res = stmt_sqlite.executeQuery(sql);
+			ResultSet res = LoadDataLogic.stmt_sqlite.executeQuery(sql);
 			
 			while(res.next()){
-				column_names = res.getString("columnnames");
+				column_names = res.getString("column_names");
 				break;
 			}
 		} catch (SQLException e) {

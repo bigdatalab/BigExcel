@@ -72,6 +72,7 @@ public class ClientLoadDataCall extends Thread {
 		String response = resource.accept("text/plain").post(String.class,table_string);
 		System.out.println("After Getting response");
 		setFaceMessageForThisCall(response);
+		LoadDataBean.deletequery="";
 		return response;
 	
     }	

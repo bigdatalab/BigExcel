@@ -20,7 +20,7 @@ public class LoadDataLogic {
 	Statement stmt_hive = null;//hcon.getHiveConnection();
 	static SQLLiteDBAccess sqlLiteDB = new SQLLiteDBAccess();
 	//opening the connection
-	static Statement stmt_sqlite =  getConnectionToSQLLite(); 
+	public static Statement stmt_sqlite =  getConnectionToSQLLite(); 
 	ServerSideGsonConversion server_side_gson = new ServerSideGsonConversion();
 	
 	
@@ -41,21 +41,14 @@ public class LoadDataLogic {
 	public String LoadData(String file_name_path){
 		String table_name=null;
 		
-		try {
-			//both statement are for SQLite
-			//stmt_sqlite = getConnectionToSQLLite(); 
+		/*try {*/
 			
 			table_name = getTableName(file_name_path);
 			String file_name = getFileName(file_name_path);
 			String path = getPathName(file_name_path);
-			//System.out.println("==1====");
-			//insert csv information to sql_lite data-base
-			insertCSVInformationIntoSQLLite(table_name,
-					getTotalNumberOfRowsInCSVFile(file_name_path));
-			//sqlLiteDB.closeSQLLiteConnection();
-			
-			//started hive connection
-			//System.out.println("==2====");
+	
+			try{
+				
 			getHiveResources();
 			//System.out.println("Before Checking table exists");
 			boolean result = checkTableExists(table_name);
@@ -66,6 +59,10 @@ public class LoadDataLogic {
 				String sql= "load data inpath '"+file_name+"' into table "+ table_name;
 				System.out.println(sql);
 				stmt_hive.executeUpdate(sql);
+				System.out.println("updating rows======");
+				//insert csv information to sql_lite data-base
+				insertCSVInformationIntoSQLLite(table_name,
+						getTotalNumberOfRowsInCSVFile(file_name_path));
 			}
 			else
 				return "Table " + "'"+table_name +"'"+ " Not Found";
@@ -77,8 +74,7 @@ public class LoadDataLogic {
 			//System.out.println("Connection Refused");
 		}
 		closeHiveResources();
-		return "Data Loaded Successfully into table " + table_name;
-		
+		return "Data Loaded Successfully into table " + table_name;	
 	}
 	
 	
@@ -122,19 +118,14 @@ public class LoadDataLogic {
 		
 		String table_name = stb.substring(table_index+5, left_brace_index);
 		table_name = table_name.trim();
-		System.out.println("==="+table_name);
+		//System.out.println("==="+table_name);
 	
-		
-		
 		getHiveResources();
 		
-		try {
-			
-			stmt_hive.executeUpdate(table_string + " row format delimited fields terminated by ',' stored as textfile");
-			
+		try {			
+			stmt_hive.executeUpdate(table_string + " row format delimited fields terminated by ',' stored as textfile");	
 			//inserting into to SQL-lite database
 			insertingColumnNamestoDataBase(table_name,li);
-			
 		} catch (SQLException e) {
 			closeHiveResources();
 			return "Table already exists";
@@ -146,7 +137,7 @@ public class LoadDataLogic {
 	
 	
 	public String DeleteTable(String table_string){
-        dropSQLiteTable(table_string);
+        
 		getHiveResources();
 		
 		String sql = "DROP TABLE " + table_string;
@@ -157,7 +148,7 @@ public class LoadDataLogic {
 		
 		try {
 			stmt_hive.executeUpdate(sql);
-			
+			dropSQLiteTable(table_string);
 										
 		} catch (SQLException e) {
 			closeHiveResources();
@@ -247,17 +238,19 @@ public class LoadDataLogic {
 	
 	public void insertCSVInformationIntoSQLLite(String table_name, int total_number_of_rows){
 		
-		System.out.println("table name = " + table_name);
+		/*System.out.println("table name = " + table_name);
 		
 		String sql = "select * from " + table_name;
 		
 		String sql_create = "create table " + table_name +
                 "(tablename TEXT NOT NULL," +
                 "total_rows INT NOT NULL)";
-		String sql_insert = "insert into "+ table_name+" (tablename,total_rows)" +
-                "VALUES("+"'"+table_name+"',"+ total_number_of_rows+")";
+		String sql_insert = "insert into tables_metadata(tablename,total_rows,column_names)" +
+                "VALUES("+"'"+table_name+"',"+ total_number_of_rows+")";*/
+		String sql_update = "UPDATE tables_metadata set total_rows="+
+				total_number_of_rows+" where table_name="+"'"+table_name+"'";
 		
-		try{
+	/*	try{
 			
 			boolean result = stmt_sqlite.execute(sql);
 			System.out.println(result);
@@ -269,12 +262,13 @@ public class LoadDataLogic {
 			} catch (SQLException e) {
 				System.out.println("unable to create the table");				
 			}
-		}
+		}*/
 
 		//update the table
 		try{
-			stmt_sqlite.executeUpdate(sql_insert);
+			stmt_sqlite.executeUpdate(sql_update);
 		}catch(Exception ex){
+			System.out.println("unable to update the total rows");
 			ex.printStackTrace();
 		}
 		
@@ -305,7 +299,7 @@ public class LoadDataLogic {
 	
 	public void insertingColumnNamestoDataBase(String table_name, List<Object> query){
 		
-		//for rows_count
+	/*	//for rows_count
 		String sql_create_rows = "create table " + table_name +
                 "(tablename TEXT NOT NULL," +
                 "total_rows INT NOT NULL)";
@@ -351,6 +345,17 @@ public class LoadDataLogic {
 			stmt_sqlite.executeUpdate(sql_insert);
 		}catch(Exception ex){
 			ex.printStackTrace();
+		}*/
+		server_side_gson.setSingleListForConversion(query);
+		String sql_insert = "insert into  tables_metadata(table_name,total_rows,column_names)" +
+              "VALUES("+"'"+table_name+"',"+0+","+"'"+server_side_gson.getSingleConvertedString()+"'"+")";
+		
+				
+		try {
+			stmt_sqlite.executeUpdate(sql_insert);
+		} catch (SQLException e) {
+			System.out.println("unable to insert row");
+			e.printStackTrace();
 		}
 
 	}
@@ -359,16 +364,17 @@ public class LoadDataLogic {
 	public void dropSQLiteTable(String table_name){
 		
 
-		String sql_drop = "DROP table " + table_name;
+		/*String sql_drop = "DROP table " + table_name;
 		String sql_drop_columns = "DROP table " + table_name+"_columns";
+		*/
 		
-		
+		String sql_delete = "delete from tables_metadata where table_name="+
+		"'"+table_name+"'";
 		try {
-			stmt_sqlite.executeUpdate(sql_drop);
-			stmt_sqlite.executeUpdate(sql_drop_columns);
+			stmt_sqlite.executeUpdate(sql_delete);
 		} catch (SQLException e) {
-			System.out.println("unable to drop SQLLite-DB Table/Table not exists");
-			//e.printStackTrace();
+			System.out.println("unable to delete row");
+			e.printStackTrace();
 		}
 	}
 	
@@ -383,8 +389,10 @@ public class LoadDataLogic {
 				"state string, zip int, phone1 int, phone2 int, email string," +
 				"web string)";
 		
-		  ldg.CreateTable(create_table);
+		  //ldg.CreateTable(create_table);
+		  //ldg.LoadData("a:sample.:500");
 		//ldg.lowerTest(create_table);
+		//ldg.dropSQLiteTable("sample");
 		
 	}
 	

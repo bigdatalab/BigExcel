@@ -6,7 +6,7 @@ package org.bsanalytics.client.loaddata;
 public class LoadDataBean {
 	
 	private static String createquery;
-	private static String deletequery;
+	public static String deletequery;
 	private static String applicationresponse;
 	private static String selectedfilename;
 	

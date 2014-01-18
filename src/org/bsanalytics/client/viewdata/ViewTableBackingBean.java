@@ -3,14 +3,15 @@ package org.bsanalytics.client.viewdata;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
+import org.bsanalytics.client.loaddata.LoadDataBean;
 
 public class ViewTableBackingBean {
 
 	private static String table_name;
 	private List<List<String>> table;
 	private List<String> column_names;
+	private static String applicationresponse;
 	//DynamicPaginationLoadingViewModel dp = 
 			//new DynamicPaginationLoadingViewModel();
 	
@@ -55,6 +56,14 @@ public class ViewTableBackingBean {
 	public void Display(){
 		System.out.println(getTable_name());
 		
+	}
+	
+	
+	public String getApplicationresponse() {
+		return applicationresponse;
+	}
+	public void setApplicationresponse(String applicationresponse) {
+		ViewTableBackingBean.applicationresponse = applicationresponse;
 	}
 	
 	public List<String> gettingColumnNames(){
