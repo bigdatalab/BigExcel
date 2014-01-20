@@ -43,11 +43,16 @@
 	<managed-bean>
 		<managed-bean-name>loadDataBean</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.loaddata.LoadDataBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>fileChooserForLoadingData</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.loaddata.FileChooserForLoadingData</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>treeDataModelForHDFS</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.hadoop.TreeDataModelForHDFS</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

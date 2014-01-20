@@ -66,6 +66,7 @@ public class ClientLoadDataCall extends Thread {
     	
     	
     	String table_string= create_del_query.getDeletequery().trim();
+    	create_del_query.setDeletequery("");
     	System.out.println("query = " + table_string);
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_load/load_data/delete_hive_table");
     	System.out.println("After Web Call");

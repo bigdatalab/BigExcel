@@ -13,3 +13,4 @@ $(document).ready(function(){
 	    $("#panel").slideUp("slow");
 	  });
 	});
+
