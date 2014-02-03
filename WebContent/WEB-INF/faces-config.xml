@@ -55,6 +55,16 @@
 		<managed-bean-class>org.bsanalytics.hadoop.TreeDataModelForHDFS</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>hiveQueryBean</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.analysis.HiveQueryBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>queryHiveCall</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.analysis.QueryHiveCall</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>login/login.xhtml</display-name>
 		<from-view-id>/login/login.xhtml</from-view-id>

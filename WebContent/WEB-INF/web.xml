@@ -52,6 +52,28 @@
     <servlet-name>View Servlet</servlet-name>
     <url-pattern>/jaxrs_view/*</url-pattern>
   </servlet-mapping>
+  
+  
+   <!--Servlet for query data -->
+   
+    <servlet>
+    <description>JAX-RS Tools Generated - Do not modify</description>
+    <servlet-name>Query Servlet</servlet-name>
+    <servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
+     <init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>org.bsanalytics.apis.analysis.QueryDataServlet</param-value>			
+	</init-param>    
+	<init-param>
+         <param-name>requestProcessorAttribute</param-name>
+         <param-value>query_data_servlet</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
+  </servlet>
+<servlet-mapping>
+    <servlet-name>Query Servlet</servlet-name>
+    <url-pattern>/jaxrs_query/*</url-pattern>
+  </servlet-mapping>
    
    
   <servlet>

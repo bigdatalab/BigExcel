@@ -17,6 +17,7 @@ public class LoadDataBean {
 		LoadDataBean.createquery = createquery;
 	}
 	public String getDeletequery() {
+		System.out.println("==deletequery Query==" + deletequery);
 		return deletequery;
 	}
 	public void setDeletequery(String deletequery) {

@@ -15,7 +15,7 @@
 
 
 <style type="text/css"> 
-#panel,#flip,#panel_hdfs,#flip_hdfs
+#panel,#flip,#panel_hdfs,#flip_hdfs,#panel_analysis,#analysis_flip
 {
 
 padding:5px;
@@ -29,6 +29,11 @@ padding:25px;
 display:none;
 }
 #panel_hdfs
+{
+padding:25px;
+display:none;
+}
+#panel_analysis
 {
 padding:25px;
 display:none;
@@ -64,8 +69,11 @@ display:none;
 </div>
 
 
+<div id="analysis_flip"><a4j:commandButton id="analysis" style="width:100%; height:30px;outline:none" image="/resources/images/dashboard/analysis.png"></a4j:commandButton></div>
+<div id="panel_analysis">
+<h:form id="hive_query_form"><a4j:commandLink id="hive_query_link" value="Query Hive" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()"></a4j:commandLink></h:form>
+</div>
 
-<div id="flip"><a4j:commandButton id="analysis" style="width:100%; height:30px;outline:none" image="/resources/images/dashboard/analysis.png"></a4j:commandButton></div>
 </div>
 
 

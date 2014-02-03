@@ -24,10 +24,21 @@ $(document).ready(function(){
 	$(document).on("click", "#table_view_form\\:view_table_btn" ,function(){
 	$("#table_view_div").load("./viewdata/loadtable_rich.xhtml");
 	             //alert($("#table_view_div_spinner").length);
-	alert("clicked");
+	//alert("clicked");
 	    
 	});
 	});
+
+
+//for query data
+$(document).ready(function(){
+	$(document).on("click", "#hive_query_form\\:hive_query_link" ,function(){		
+	$("#right_side_div").load("./analysis/queryhive.xhtml");
+	    
+	});
+	});
+
+
 
 $(document).ready(function(){
 	$(this).on("click", "#table_view_form\\:reload_table_btn" ,function(){
@@ -62,7 +73,7 @@ $(document).ready(function(){
 $(document).ready(function (){	
 	$("#load_form\\:load_link").ajaxSend (function () {
 		$('#div_spinner').show();
-		alert("ajax request");
+		//alert("ajax request");
 	}).ajaxStop(function () {
 		$('#div_spinner').hide();
 	});	
@@ -70,7 +81,7 @@ $(document).ready(function (){
 
 $(document).ready(function (){
 $( document ).ajaxComplete(function() {
-	  alert("ajax completes");
+	  //alert("ajax completes");
 	});
 });
 
@@ -79,6 +90,6 @@ $.ajax({
     
     global: 'true',
     ajaxSend: function() {
-    	alert("Hey its new");
+    	//alert("Hey its new");
     }
 }); 
