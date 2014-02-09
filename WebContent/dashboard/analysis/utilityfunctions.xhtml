@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body>
+<h:form>
+    <rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin; height : 520px;">
+        <f:facet name="header">
+        Utility Functions
+        </f:facet>
+		<table style="width:100%;background-color:#7f7f7f;Serif;" border="0" align="center">
+		<tr>
+		<td style=" width : 33%;"></td>
+		<td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium;">
+		<rich:panel style=" width : 600px;">
+		<f:facet name="header">
+        Enter Table Information        
+        </f:facet>
+        <table>
+        
+        <tr>
+        <td style=" width : 33%;">Enter Table Name:</td>
+        <td><h:inputText style="height:20px; width:300px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{utilityFunctionBean.table_name}"></h:inputText></td>
+        <td style=" width : 33%;"></td>
+        </tr>
+        
+        <tr>
+        <td style=" width : 33%;">Enter Column Name:</td>
+        <td><h:inputText style="height:20px; width:300px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{utilityFunctionBean.column_name}"></h:inputText></td>
+        <td style=" width : 33%;"></td>
+        </tr>
+        
+         <tr>
+        <td style=" width : 33%;">Select Function:</td>
+        <td>
+            <rich:select id="function" value="#{utilityFunctionBean.selected_item}">
+                <f:selectItems value="#{utilityFunctionBean.function_selection}" />                             
+            </rich:select>
+        </td>
+        <td style=" width : 33%;"></td>
+        </tr>
+        
+        <tr>
+        <td style=" width : 33%;"></td>
+        <td>
+        
+            <h:panelGrid columns="3" style="height:40px">     
+    
+    <a4j:commandButton value="Compute" id="ajax_calculate_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="query" actionListener="#{queryHiveCall.computeUtilityFunctions}" render="function_result">
+    </a4j:commandButton>	
+     <a4j:status name="query">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+          
+    </h:panelGrid>
+        
+        </td>
+        <td style=" width : 33%;"></td>
+        </tr>
+        
+        </table>         
+		</rich:panel>
+		</td>
+		<td style=" width : 33%;"></td>
+		</tr>
+		<tr><td></td><td style="background-color:#F2D58C; height: 5px"></td></tr>
+		<tr>
+		<td></td>
+		<td><rich:panel style=" height : 61px;">
+		<f:facet name="header">
+        Result        
+        </f:facet>
+		<rich:message id="function_result" style="color:#F2D58C;font-size:large;font-family:Serif;"/>
+		</rich:panel></td>
+		<td></td>
+		</tr>
+		</table>
+	</rich:panel>
+	</h:form>
+</body> 
+</html>

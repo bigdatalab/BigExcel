@@ -15,5 +15,14 @@ public class QueryData {
 		
 		
 	}
+	
+	
+	@POST
+	@Path("/utility_functions")	
+	@Produces("text/plain")
+	public String performUtilityFunction(String table_column_function_name){	
+        return new UtilityFunctionsLogic().performFunction(table_column_function_name);
+		
+	}
 
 }

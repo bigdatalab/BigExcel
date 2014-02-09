@@ -9,12 +9,12 @@
 <h:head></h:head> 
 <body>
 <h:form>
-<div id="message_upper" style="display: non; height : 30px;background:#7f7f7f">     
+<!-- <div id="message_upper" style="display: non; height : 30px;background:#7f7f7f">     
      <rich:message id="messages" style="color:#F2D58C;font-size:large;font-family:Serif;"/>
-</div>
-    <rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin; height : 480px;">
+</div>-->
+    <rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin; height : 520px;">
         <f:facet name="header">
-        Querying Hive
+        Write Custom Queries
         </f:facet>
 		<table style="width:100%;background-color:#7f7f7f;Serif;" border="0" align="center">
 		<tr>
@@ -31,7 +31,7 @@
     
     <h:panelGrid columns="2" style="height:40px">     
     
-    <a4j:commandButton value="Query" id="ajax_hive_query_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="query" actionListener="#{queryHiveCall.QueryHive}" render="messages_result">
+    <a4j:commandButton value="Query" id="ajax_hive_query_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="query" actionListener="#{queryHiveCall.queryHive}" render="messages_result">
     </a4j:commandButton>	
      <a4j:status name="query">
              <f:facet name="start">

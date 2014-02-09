@@ -65,6 +65,11 @@
 		<managed-bean-class>org.bsanalytics.client.analysis.QueryHiveCall</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>utilityFunctionBean</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.analysis.UtilityFunctionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>login/login.xhtml</display-name>
 		<from-view-id>/login/login.xhtml</from-view-id>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body>
+ <div id="message_upper" style="display: non; height : 30px;background:#7f7f7f">     
+     <rich:message id="messages" style="color:#F2D58C;font-size:large;font-family:Serif;"/>	
+</div>
+<div id="content" style="background-color:#7F7F7F; height : 180px;">
+ 
+        <rich:panel style="font-size:medium;background-color:#7F7F7F;">
+        <f:facet name="header">
+        Custome Data View
+        </f:facet>
+		
+		<table border="0" style="width:100%">
+	    <tbody style="FONT-FAMILY: 'Serif';">
+        <tr><td></td>
+    	<td style=" width : 340px;">
+    	<rich:panel style=" width : 600px;">
+    	<f:facet name="header">
+    	Enter table name and row range to view (First Number-Second Number)
+    	</f:facet>
+    	<table>
+    	<tr>
+    	<td style=" width : 33%;">Enter Table Name: </td>
+    	<td><h:inputText value="#{customTableBean.table_name}" style="height:20px; width:300px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;" id="table_name">
+    	</h:inputText>
+    	</td>
+    	<td style=" width : 33%;"></td>
+    	</tr>
+    	
+    	<tr>
+    	<td style=" width : 33%;">Enter Range: </td>
+    	<td><h:inputText value="#{customTableBean.range}" style="height:20px; width:300px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;" id="table_name">
+    	</h:inputText>
+    	</td>
+    	<td style=" width : 33%;"></td>
+    	</tr>
+    	
+    	<tr>
+    	<td style=" width : 33%;"></td>
+    	<td>
+    	<h:panelGrid columns="2">
+    	<a4j:commandButton value="View" id="ajax_view_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="query" actionListener="#{queryHiveCall.computeUtilityFunctions}" render="function_result">
+    	</a4j:commandButton>  	
+    	<a4j:status name="query">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+    	
+    	</h:panelGrid>  
+    	</td>
+    	<td style=" width : 33%;"></td>
+    	</tr>
+    	
+    	
+    	</table>
+    	
+    	</rich:panel>
+    	
+    	</td>
+    	<td></td>
+    	</tr>    	
+    	</tbody>
+    	</table> 
+    	
+		</rich:panel> 	    
+    	
+</div>
+<div id="table_view_div" style="border-style:solid; overflow-x: scroll; height : 400px;" >
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<div id="table_view_div_spinner" style="height:50px;text-align: center; display: none;">
+   <img src="../../resources/images/progress/loader.gif" alt="Loading..."/>
+   </div>
+
+</div>
+
+</body> 
+</html>
