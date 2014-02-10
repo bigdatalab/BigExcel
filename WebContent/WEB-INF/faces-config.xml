@@ -70,6 +70,21 @@
 		<managed-bean-class>org.bsanalytics.client.analysis.UtilityFunctionBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>partialPaginationTableColumns</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.analysis.PartialPaginationTableColumns</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>customTableViewBean</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.analysis.CustomTableViewBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>partialTableDataPagination</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.analysis.PartialTableDataPagination</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>login/login.xhtml</display-name>
 		<from-view-id>/login/login.xhtml</from-view-id>

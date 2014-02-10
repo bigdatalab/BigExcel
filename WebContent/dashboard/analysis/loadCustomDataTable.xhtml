@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"> 
+
+<h:head></h:head> 
+<body>
+    <h:form>
+    
+    
+    <rich:dataTable value="#{partialTableDataPagination}" var="dataTable" rows="25" id="table_data_partial">  
+               
+         <c:forEach items="#{partialPaginationTableColumns.columns}" var="iterate_value"  varStatus="subscript">
+         <rich:column>
+               <f:facet name="header"> 
+                     <h:outputText value="#{iterate_value}" />
+               </f:facet>
+               <h:outputText value="#{dataTable[subscript.index]}" />
+         
+            </rich:column>
+      </c:forEach>
+      
+            <f:facet name="footer">  
+				               
+            </f:facet>         
+						
+        </rich:dataTable>
+    
+    </h:form>
+</body> 
+</html>

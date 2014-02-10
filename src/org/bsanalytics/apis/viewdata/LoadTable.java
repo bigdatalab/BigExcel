@@ -26,12 +26,12 @@ public class LoadTable {
 	@Produces("text/json")
 	public String loadInitialDataFromToHiveTable(
 			@PathParam("fetch_size") String fetch_size,
-			@PathParam("fetch_size") String data){
+			@PathParam("data") String data){
 		return LoadTableLogic.getInitialTable(fetch_size);		
 		
 	}
 	
-	
+	//getting column names
 	@GET
 	@Path("/{table_name}/{load}/{columns}")	
 	@Produces("text/json")
@@ -42,17 +42,15 @@ public class LoadTable {
 		
 	}
 	
-/*	@GET
-	@Path("/{table_name}/{column_count}/{fetch_size}/{partial}")
+	/*@GET
+	@Path("/{table_name}/{fetch_size}/{partial_load}/{analytics}")
 	@Produces("text/json")
-	public List<List<Object>> loadPartialDataFromToHiveTable(
+	public String loadPartialDataFromToHiveTable(
 			@PathParam("table_name") String table_name,
-			@PathParam("column_count") String column_count,
-			@PathParam("fetch_size") String fetch_size,
-			@PathParam("partial") String partial){
-		return null;
+			@PathParam("fetch_size") String fetch_size){
+		System.out.println("call is coming here");
+		return LoadTableLogic.getCustomPartialData(table_name,fetch_size);
 		
 	}*/
-	
 	
 }

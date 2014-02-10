@@ -48,6 +48,27 @@ $(document).ready(function(){
 	});
 	});
 
+
+
+//for range page loading
+$(document).ready(function(){
+	$(document).on("click", "#range_query_form\\:range_query_link" ,function(){		
+	$("#right_side_div").load("./analysis/customdatatable.xhtml");
+	alert("comint");
+	});
+	});
+
+
+//for range loading table
+$(document).ready(function(){
+	$(document).on("click", "#form_view_btn\\:ajax_view_btn" ,function(){		
+	$("#right_side_div").load("./analysis/loadCustomDataTable.xhtml");
+	    
+	});
+	});
+
+
+
 $(document).ready(function(){
 	$(this).on("click", "#table_view_form\\:reload_table_btn" ,function(){
 	$("#table_view_div").load("./viewdata/loadtable_rich.xhtml");	

@@ -11,7 +11,7 @@
  <div id="message_upper" style="display: non; height : 30px;background:#7f7f7f">     
      <rich:message id="messages" style="color:#F2D58C;font-size:large;font-family:Serif;"/>	
 </div>
-<div id="content" style="background-color:#7F7F7F; height : 180px;">
+<div id="content" style="background-color:#7F7F7F; height : 520px;">
  
         <rich:panel style="font-size:medium;background-color:#7F7F7F;">
         <f:facet name="header">
@@ -29,7 +29,7 @@
     	<table>
     	<tr>
     	<td style=" width : 33%;">Enter Table Name: </td>
-    	<td><h:inputText value="#{customTableBean.table_name}" style="height:20px; width:300px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;" id="table_name">
+    	<td><h:inputText value="#{customTableViewBean.view_table_name}" style="height:20px; width:300px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;">
     	</h:inputText>
     	</td>
     	<td style=" width : 33%;"></td>
@@ -37,7 +37,7 @@
     	
     	<tr>
     	<td style=" width : 33%;">Enter Range: </td>
-    	<td><h:inputText value="#{customTableBean.range}" style="height:20px; width:300px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;" id="table_name">
+    	<td><h:inputText value="#{customTableViewBean.range}" style="height:20px; width:300px;background:#BFBFBF;font-size:medium;background-color:#BFBFBF;background-repeat:no-repeat;">
     	</h:inputText>
     	</td>
     	<td style=" width : 33%;"></td>
@@ -47,8 +47,10 @@
     	<td style=" width : 33%;"></td>
     	<td>
     	<h:panelGrid columns="2">
-    	<a4j:commandButton value="View" id="ajax_view_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="query" actionListener="#{queryHiveCall.computeUtilityFunctions}" render="function_result">
-    	</a4j:commandButton>  	
+    	<h:form id="form_view_btn">
+    	<a4j:commandButton value="View" id="ajax_view_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" actionListener="#{queryHiveCall.loadRowsRange}" status="query" render="function_result">
+    	</a4j:commandButton>
+    	</h:form>  	
     	<a4j:status name="query">
              <f:facet name="start">
 		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
@@ -74,21 +76,7 @@
 		</rich:panel> 	    
     	
 </div>
-<div id="table_view_div" style="border-style:solid; overflow-x: scroll; height : 400px;" >
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<div id="table_view_div_spinner" style="height:50px;text-align: center; display: none;">
-   <img src="../../resources/images/progress/loader.gif" alt="Loading..."/>
-   </div>
 
-</div>
 
 </body> 
 </html>

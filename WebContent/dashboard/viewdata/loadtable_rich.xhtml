@@ -28,7 +28,7 @@
     
              </div>
        
- <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="25" id="table_data">  
+ <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="#{pagination.number_of_rows}" id="table_data">  
                
          <c:forEach items="#{pagination.columns}" var="iterate_value"  varStatus="subscript">
          <rich:column>

@@ -1,17 +1,14 @@
-package org.bsanalytics.client.viewdata;
+package org.bsanalytics.client.analysis;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
-import org.bsanalytics.apis.viewdata.LoadTableFromDataBase;
 import org.bsanalytics.client.loaddata.ClientObject;
-import org.bsanalytics.general.client.CSVHandler;
 import org.bsanalytics.general.client.ClientSideGsonConversion;
-import org.bsanalytics.general.client.SelectedFilePath;
 
-public class Pagination {
+public class PartialPaginationTableColumns {
 	
 	List<List<Object>> list;
 	List<String> columns;
@@ -20,22 +17,14 @@ public class Pagination {
 	int flag=0;
 	ClientObject cObj = new ClientObject();
     RestClient client_wink = cObj.getClientObject();
-    ViewTableBackingBean table_name_obj = new ViewTableBackingBean();
+    //ViewTableBackingBean table_name_obj = new ViewTableBackingBean();
+    CustomTableViewBean table_name_obj = new CustomTableViewBean();
     ClientSideGsonConversion cGson = new ClientSideGsonConversion();
-    int number_of_rows;
     
-	public int getNumber_of_rows() {
-		number_of_rows=25;
-		return number_of_rows;
-	}
-
-	public void setNumber_of_rows(int number_of_rows) {
-		this.number_of_rows = number_of_rows;
-	}
-
 	//CSVHandler csv_dat = new CSVHandler();
 	static List<String> column_names_list;
 
+	
 	
 	public String getFirst_name() {
 		first_name="First Name";
@@ -138,7 +127,8 @@ public class Pagination {
 		 //li = csv_dat.getColumnNamesFromCsvFile(SelectedFilePath.file_path_from_the_disk);
 		 //return li;
 		
-		String table_name = table_name_obj.getTable_name();
+		//String table_name = table_name_obj.getView_table_name();
+		String table_name="sample";
     	Resource resource = client_wink.resource("http://localhost:8080/bsanalytics/jaxrs_view/view_data/"+table_name+"/l/c");
 		String response = resource.accept("text/json").get(String.class);
 		cGson.setSingleListForConversion(response);
@@ -147,5 +137,6 @@ public class Pagination {
 		return cGson.getSingleConvertedList();
 		 
 	}  
+
 
 }

@@ -97,6 +97,11 @@ public class LoadTableFromDataBase {
 		return column_count;
 	}
 	
+	
+	public static void closeHiveResources(){
+		hcon.closeHiveConnection();
+	}
+	
 	/*not supported*/
 	/*public void checkPrevious(int column_count, int fetch_size){
 		

@@ -50,7 +50,9 @@ public class LoadTableLogic {
 		LoadTableFromDataBase.getTCustomRowsList(column_count, Integer.parseInt(fetch_size));
 		List<List<Object>> list_chunck = new ArrayList<>();
       	list_chunck = LoadTableFromDataBase.getListTwo();
-      	gson_conv.setListForConversion(list_chunck);      	
+      	gson_conv.setListForConversion(list_chunck);  
+      	//closing the hive source
+      	//LoadTableFromDataBase.closeHiveResources();
 		return gson_conv.getConvertedString();
 	}
 
@@ -85,7 +87,7 @@ public class LoadTableLogic {
 		
 	}
 	
-	
+//getting column names from SQLLite DB	
 public static String getcolumnNames(String table_name){
 		
 		
@@ -106,6 +108,25 @@ public static String getcolumnNames(String table_name){
 		
 		return column_names;
 		
+	}
+
+
+	public static String getCustomPartialData(String table_name, String fetch_size){
+	
+		         System.out.println("Get Partial Data table_name =" + table_name);
+		         System.out.println("Get Partial Data fetch_size =" + fetch_size);
+				
+		         String total_rows = initializeDBConnection(table_name);	    	
+		    	    	
+		    	if (Integer.parseInt(total_rows) < Integer.parseInt(fetch_size))
+		    	return null;
+		    	
+		    	//returning the rows
+		    	String result = LoadTableLogic.getInitialTable(fetch_size);
+		    	//LoadTableFromDataBase.closeHiveResources();
+		    	
+		    	return result;
+	
 	}
 
 }
