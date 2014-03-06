@@ -9,6 +9,15 @@ public class LoadDataBean {
 	public static String deletequery;
 	private static String applicationresponse;
 	private static String selectedfilename;
+	private static String load_text_file;
+	
+	public String getLoad_text_file() {
+		return load_text_file;
+	}
+	public void setLoad_text_file(String load_text_file) {
+		LoadDataBean.load_text_file = load_text_file;
+	}
+	
 	
 	public String getCreatequery() {
 		return createquery;

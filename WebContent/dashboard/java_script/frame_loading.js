@@ -18,6 +18,17 @@ $(document).ready(function(){
 });
 
 
+$(document).ready(function(){
+	$(document).on("click", "#convert_form_view\\:convert_link" ,function(){
+    //$("#load_form_view\\:load_link_view").click(function(){
+    		$("#right_side_div").load("./loaddata/loadtxtfile.xhtml");
+    	
+    	//alert($("#right_side_div").length);
+    
+    });
+});
+
+
 //for view data javascript
 
 $(document).ready(function(){
@@ -50,11 +61,18 @@ $(document).ready(function(){
 
 
 
-//for range page loading
+//for Interactive analytics
 $(document).ready(function(){
 	$(document).on("click", "#range_query_form\\:range_query_link" ,function(){		
 	$("#right_side_div").load("./analysis/customdatatable.xhtml");
-	alert("comint");
+	});
+	});
+
+
+//for Custom Map Reduce
+$(document).ready(function(){
+	$(document).on("click", "#custom_map_reduce_form\\:custom_map_reduce" ,function(){		
+	$("#right_side_div").load("./analysis/custom_map_reduce.xhtml");
 	});
 	});
 

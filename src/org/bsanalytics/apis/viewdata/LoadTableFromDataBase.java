@@ -74,9 +74,11 @@ public class LoadTableFromDataBase {
 					//System.out.println(res.getString(count));
 					//System.out.println(count);
 					String temp = res.getString(count++);
+					System.out.println("======temp=== "+temp);
 					if (temp != null){
-						int lenth = temp.length();
-						temp = temp.substring(1, lenth-1);
+						temp.trim();
+						//int lenth = temp.length();
+						//temp = temp.substring(1, lenth-1);
 						}
 					//System.out.println(temp);  
 					   rows.add(temp);

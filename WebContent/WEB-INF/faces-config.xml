@@ -46,11 +46,6 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>fileChooserForLoadingData</managed-bean-name>
-		<managed-bean-class>org.bsanalytics.client.loaddata.FileChooserForLoadingData</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>treeDataModelForHDFS</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.hadoop.TreeDataModelForHDFS</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -84,6 +79,11 @@
 		<managed-bean-name>partialTableDataPagination</managed-bean-name>
 		<managed-bean-class>org.bsanalytics.client.analysis.PartialTableDataPagination</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>fileChooser</managed-bean-name>
+		<managed-bean-class>org.bsanalytics.client.loaddata.FileChooserForLoadingData</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>login/login.xhtml</display-name>

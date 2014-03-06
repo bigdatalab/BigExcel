@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body>
+<div id="message_upper" style="display: non; height : 30px;background:#7f7f7f">     
+     <rich:message id="messages" style="color:#F2D58C;font-size:large;font-family:Serif;"/>
+	<!-- <fieldset style="height:40px;color:#F2D58C;">
+            <legend>Application Response</legend>
+            
+            
+        </fieldset> -->
+	
+</div>
+<h:form>
+
+<rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin; height : 520px;">
+        <f:facet name="header">
+        Converting Text File to CSV
+        </f:facet>
+	
+<table style="width:100%;background-color:#7f7f7f;Serif;" border="0" align="center"> 
+	<tbody>
+	
+	<tr>
+    
+    <td style="widht:33%"></td>
+    
+       <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium; width: 33%">
+     <rich:panel style=" height : 102px;">
+    <f:facet name="header">
+        Load Text File
+        </f:facet>	
+    
+    <h:panelGrid>
+    <h:inputText style="height:20px; width:377px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;"></h:inputText>
+    </h:panelGrid>
+    
+    <h:panelGrid columns="3" style="height:40px">     
+    
+    <a4j:commandButton value="Select File" id="ajax_select_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="select" actionListener="#{fileChooser.selectFileFromSystem}">
+    </a4j:commandButton>
+    
+    <a4j:commandButton value="Convert" id="ajax_convert_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="load" actionListener="#{fileChooser.convertToCSV}">
+    </a4j:commandButton>
+	
+     <a4j:status name="load">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>     
+     
+    </h:panelGrid>
+    </rich:panel>
+    </td>
+	    
+    <td style="widht:33%"></td>
+    
+    </tr>
+    </tbody>	
+	</table>
+	
+	</rich:panel>
+	</h:form>
+</body> 
+</html>
