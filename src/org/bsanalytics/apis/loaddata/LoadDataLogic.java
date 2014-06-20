@@ -9,13 +9,13 @@ import java.util.List;
 import org.bsanalytics.general.server.SQLLiteDBAccess;
 import org.bsanalytics.general.server.ServerSideGsonConversion;
 import org.bsanalytics.hadoop.AccessHadoopFileSystem;
-import org.bsanalytics.hive.LoadHiveConnection;
+import org.bsanalytics.hive.ConnectionManager;
 
 public class LoadDataLogic {
 	
 	static String LOAD_HDFS = "hdfs dfs -copyFromLocal";
 	
-	LoadHiveConnection hcon = new LoadHiveConnection();
+	ConnectionManager hcon = new ConnectionManager();
 	AccessHadoopFileSystem hadoop_file_system =  new AccessHadoopFileSystem();
 	Statement stmt_hive = null;//hcon.getHiveConnection();
 	static SQLLiteDBAccess sqlLiteDB = new SQLLiteDBAccess();
@@ -56,7 +56,7 @@ public class LoadDataLogic {
 			if (result)
 			{   
 				LoadFiletoHDFS(file_name,path);
-				String sql= "load data inpath '"+file_name+"' into table "+ table_name;
+				String sql= "load data inpath '"+file_name+"' overwrite into table "+ table_name;
 				System.out.println(sql);
 				stmt_hive.executeUpdate(sql);
 				System.out.println("updating rows======");
@@ -384,12 +384,14 @@ public class LoadDataLogic {
 		LoadDataLogic ldg = new LoadDataLogic();
 		//System.out.println(ldg.DeleteTable("sample"));
 		
-		String create_table = "create table sample(first_name string, last_name string,"+
+		/*String create_table = "create table sample(first_name string, last_name string,"+
 				"company string, address string, city string, county string," +
 				"state string, zip int, phone1 int, phone2 int, email string," +
-				"web string)";
+				"web string)";*/
 		
-		  //ldg.CreateTable(create_table);
+		String create_table_second = "create table test_new_one(id int, name string)";
+		
+		  ldg.CreateTable(create_table_second);
 		  //ldg.LoadData("a:sample.:500");
 		//ldg.lowerTest(create_table);
 		//ldg.dropSQLiteTable("sample");

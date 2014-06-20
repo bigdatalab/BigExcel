@@ -15,16 +15,20 @@ public class FileChooserForLoadingData {
 	private static String absolute_path;
 	public static int total_csv_file_rows;
 	
-	FileChooserForLoadingData(){
-		chooser = new JFileChooser();
+	public FileChooserForLoadingData(){
+		/*chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 		        "CSV File", "csv");
-		    chooser.setFileFilter(filter);
+		    chooser.setFileFilter(filter);*/
 	}
 	
 	public String selectFileFromSystem(){
 		
 		 
+		chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		        "CSV and Pl Files", "csv","pl");
+		    chooser.setFileFilter(filter);
 		    
 		    int returnVal = chooser.showOpenDialog(chooser);
 		    if(returnVal == JFileChooser.APPROVE_OPTION) {

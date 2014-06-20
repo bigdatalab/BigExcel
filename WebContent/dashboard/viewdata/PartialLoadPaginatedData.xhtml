@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"> 
+
+<h:head>
+<script src="../java_script/javascript-1.10.2-library.js"></script> 
+<script src="../java_script/dim_page_view_table.js"></script>
+</h:head>
+<body>
+ <h:form>
+  <div style="height: 50px">
+  
+   <h:panelGrid columns="2" style="height:40px">   
+      <a4j:commandButton value="Next>>" type="button" for="table_data" render="table_data" status="for_status_rendering" style="width:101px;background-color:#F2D58C;background:#F2D58C;height:20px;outline:none"></a4j:commandButton>
+       	   
+         <a4j:status name="for_status_rendering">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>
+       </h:panelGrid>
+    
+             </div>
+       
+ <rich:dataTable value="#{dynamicPaginationLoadingViewModel}" var="dataTable" rows="#{pagination.number_of_rows}" id="table_data">  
+               
+         <c:forEach items="#{pagination.columns}" var="iterate_value"  varStatus="subscript">
+         <rich:column>
+               <f:facet name="header"> 
+                     <h:outputText value="#{iterate_value}" />
+               </f:facet>
+               <h:outputText value="#{dataTable[subscript.index]}" />
+         
+            </rich:column>
+      </c:forEach>
+      
+            <f:facet name="footer">  
+				               
+            </f:facet>         
+						
+        </rich:dataTable>               
+ 
+       
+ 			
+        </h:form>
+       	
+</body> 
+</html>

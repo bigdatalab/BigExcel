@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	$(document).on("click", "#load_form\\:load_link" ,function(){
 	//$("#load_form\\:load_link").click(function(){		
-		$("#right_side_div").load("./loaddata/loaddatarich.xhtml");
+		$("#right_side_div").load("./loaddata/loaddata.xhtml");
         });
 	});
 
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$(document).on("click", "#table_view_form\\:view_table_btn" ,function(){
-	$("#table_view_div").load("./viewdata/loadtable_rich.xhtml");
+	$("#table_view_div").load("./viewdata/PartialLoadPaginatedData.xhtml");
 	             //alert($("#table_view_div_spinner").length);
 	//alert("clicked");
 	    
@@ -72,24 +72,42 @@ $(document).ready(function(){
 //for Custom Map Reduce
 $(document).ready(function(){
 	$(document).on("click", "#custom_map_reduce_form\\:custom_map_reduce" ,function(){		
-	$("#right_side_div").load("./analysis/custom_map_reduce.xhtml");
+	$("#right_side_div").load("./analysis/ModuleRespostirySelection.xhtml");
 	});
 	});
+
+
+    
+//for graph display
+//$(document).ready(function(){
+//$(document).on("click", "#analysis\\:ajax_process_btn" ,function(){		
+//	$("#right_side_div").load("./analysis/graphvisualization.xhtml");
+//	});
+//	});
+
 
 
 //for range loading table
 $(document).ready(function(){
 	$(document).on("click", "#form_view_btn\\:ajax_view_btn" ,function(){		
 	$("#right_side_div").load("./analysis/loadCustomDataTable.xhtml");
-	    
+		
+	//	$.ajax({
+	//		  url: "./analysis/loadCustomDataTable.xhtml",
+	//		  context: document.body,
+	//		  success: function(){
+			    //$(this).addClass("done");
+	//			  $("#right_side_div").load("./analysis/loadCustomDataTable.xhtml");
+	//		  }
+	//		});		    
 	});
-	});
+});
 
 
 
 $(document).ready(function(){
 	$(this).on("click", "#table_view_form\\:reload_table_btn" ,function(){
-	$("#table_view_div").load("./viewdata/loadtable_rich.xhtml");	
+	$("#table_view_div").load("./viewdata/PartialLoadPaginatedData.xhtml");	
 	    
 	});
 	});

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body>
+
+<h:form id="analysis">
+    <rich:panel style="border-style:solid;background-color:#7F7F7F;border-color:#1A1A1A;border-width:thin; height : 520px;">
+        <f:facet name="header">
+        Plugin User Define Scripts
+        </f:facet>
+		
+		
+		<table style="width:100%;background-color:#7f7f7f;Serif;" border="0" align="center"> 
+	<tbody>
+	
+	<tr>
+    
+    <td style="widht:33%"></td>
+    
+       <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium; width: 33%">
+     <rich:panel style=" height : px">
+    <f:facet name="header">
+        Enter Table Name
+        </f:facet>	
+    
+    <h:panelGrid>
+    <h:inputTextarea style="width:377px;font-size:medium;background:#BFBFBF;background-color:#BFBFBF; height : 20px;" value="#{hiveQueryBean.hive_query}"></h:inputTextarea>
+    </h:panelGrid>    
+    
+    </rich:panel>
+    </td>
+	    
+    <td style="widht:33%"></td>
+    
+    </tr>
+    <tr><td></td><td style="background-color:#F2D58C; height: 5px"></td><td></td></tr>
+    
+    <tr>
+    <td></td>
+    <td>
+    <rich:panel style=" height : 95px;">
+    <f:facet name="header">
+        Select Algorithm (Module Repository) 
+        </f:facet>	
+    
+    <h:panelGrid>
+    </h:panelGrid>
+    
+    <h:panelGrid columns="2" style="height:40px">     
+    
+    <a4j:commandButton value="Select Algorithm" id="ajax_map_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" actionListener="#{fileChooserForLoadingData.selectFileFromSystem}">
+    </a4j:commandButton>
+          
+    </h:panelGrid>
+    </rich:panel>
+    </td>
+    </tr>
+    
+    <tr><td></td><td style="background-color:#F2D58C; height: 5px"></td><td></td></tr>
+    
+    <tr>
+    <td></td>
+    <td>
+    <rich:panel style=" height : 116px;">
+    <f:facet name="header">
+        Add conditions seprate by comma ','
+        </f:facet>	
+    
+    <h:panelGrid>
+    <h:inputText style="height:20px; width:377px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{hiveQueryBean.where_clause}"></h:inputText>
+    Period [Format: column name, From Date, Prediction Date]
+    <h:inputText style="height:20px; width:377px; font-size:medium;background-color:#BFBFBF;background:#BFBFBF;" value="#{hiveQueryBean.dates}"></h:inputText>
+    </h:panelGrid>
+    
+    
+    </rich:panel>
+    </td>
+    </tr>
+    
+    <tr>
+    
+    <td style="widht:33%"></td>
+    
+       <td style="COLOR: #ffffff; FONT-FAMILY: 'Serif'; FONT-SIZE: medium; width: 33%">
+     <rich:panel style=" height : 70px;">
+    <f:facet name="header">
+        Processes
+        </f:facet>	
+    
+    <h:panelGrid columns="2" style="height:40px">     
+    
+    <a4j:commandButton value="Process" id="ajax_process_btn" style="height:20px;width:101px;background-color:#F2D58C;background:#F2D58C;outline:none" status="process" actionListener="#{queryHiveCall.generateGraph}" action="process">
+    </a4j:commandButton>
+     	
+     <a4j:status name="process">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="not displaying" />
+            </f:facet>
+      </a4j:status>     
+      
+    </h:panelGrid>
+    </rich:panel>
+    </td>
+	    
+    <td style="widht:33%"></td>
+    
+    </tr>
+    
+    </tbody>	
+	</table>
+		
+		
+		
+		
+	</rich:panel>
+	
+	<!--
+	 <a4j:status name="process">
+	 <div id="div_spinner" style="height:50px;text-align: center; display: none;">
+             <f:facet name="start">
+		         <h:graphicImage value="../../resources/images/progress/text_btn_loader.gif" alt="Loading..." />
+            </f:facet>
+            </div>
+      </a4j:status> 
+    <img src="../../resources/images/progress/loader.gif" alt="Loading..."/> -->
+   
+   </h:form>
+</body> 
+</html>

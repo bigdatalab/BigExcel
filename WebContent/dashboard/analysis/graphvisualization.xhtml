@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+      
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+      
+    function drawChart() {
+
+//      var jsoooon = document.getElementById('myForm:hidden2').value;
+
+//      alert(jsoooon);
+          	
+      var jsonData = $.ajax({
+          url: "http://localhost:8080//bsanalytics/jaxrs_query/query_data/hive_query/tmp/partial_load/analytics/graph_creation/result",
+          dataType:"json",
+          async: false
+          }).responseText;
+
+
+      var options = {
+    		  width: 600,
+    		  height: 300,
+    		  title: 'Actual and Predicted Buzz Scores',
+    		  colors: ['#F2D58C', '#7F7F7F', '#7F7F7F']
+    		};
+         
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData);
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+    </script>
+  </head>
+
+  <body>
+
+	<div id="chart_div1" style="COLOR: #f2d58c; height: 100px;background-color:#7F7F7F;border-color:#7F7F7F;" align="center" >
+	
+	</div>
+	
+
+	<div id="chart_div" style="border-top-color:#7F7F7F;border-left-color:#7F7F7F;height: 300px;border-right-color:#7F7F7F;background-color:White;border-color:#7F7F7F;" align="center" ></div>
+	
+	<div id="chart_div2" style="COLOR: #f2d58c; height: 250px;background-color:#7F7F7F;border-color:#7F7F7F;" align="center" >
+ 	<!--  <h:form id="load_back_form"><a4j:commandLink id="back_link" value="Back To Dashboard" style="FONT-WEIGHT: bold; COLOR: #f2d58c; text-decoration:underline;font-size:medium;font-family:serif" onclick="()" ></a4j:commandLink></h:form>
+ 	-->
+ 	- EP: Extrapolation Based Prediction Technique
+		<br></br>
+	- RP: Regression Based Prediction Technique
+	</div>
+    
+  </body>
+  
+</html>

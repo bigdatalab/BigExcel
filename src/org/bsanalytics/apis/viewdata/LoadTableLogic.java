@@ -24,12 +24,14 @@ public class LoadTableLogic {
 	
 	public static String initializeDBConnection(String table_name){
 	
-    	
+    	System.out.println("Loading Data Format -1");
     	//executing the database statement
 		LoadTableFromDataBase.loadDataFromTable(table_name);
     	
     	//getting column count
     	column_count = LoadTableFromDataBase.getColumnCount();
+    	
+    	System.out.println("column_count = " + column_count);
     	
     	//reading total number of rows from CSV file
     	//getting_total_rows_from_csv = new ReadCSVFileRowCount();    	

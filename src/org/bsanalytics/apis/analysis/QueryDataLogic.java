@@ -4,10 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.bsanalytics.hive.LoadHiveConnection;
+import org.bsanalytics.hive.ConnectionManager;
+
 
 public class QueryDataLogic {
-	LoadHiveConnection hcon = new LoadHiveConnection();
+	ConnectionManager hcon = new ConnectionManager();
 	Statement stmt_hive = null;
 	ResultSet res;
 	

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13879810748640" configfile="/bsanalytics/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="dashboard/dashboardnew_rich.xhtml" x="384" y="138" id="pf13896395964721" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13896399904542" path="/dashboard/dashboardnew_rich.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="login/login.xhtml" x="144" y="138" id="pf13896399904543" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13896399904542" path="/login/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dashboard/dashboardnew_rich.xhtml" x="456" y="138" id="pf13896395964721" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13896399904542" path="/dashboard/dashboardnew_rich.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login/login.xhtml" x="180" y="138" id="pf13896399904543" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13896399904542" path="/login/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dashboard/analysis/ModuleRespostirySelection.xhtml" x="48" y="264" id="pf14029537522870" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14031840478820" path="/dashboard/analysis/ModuleRespostirySelection.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dashboard/analysis/graphvisualization.xhtml" x="468" y="264" id="pf14029537522872" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14031840478820" path="/dashboard/analysis/graphvisualization.xhtml"/>
   <links id="pf13896399904542" target="pf13896395964721" source="pf13896399904543" outcome="login_in" redirect="true"/>
+  <links id="pf14031840478820" target="pf14029537522872" source="pf14029537522870" outcome="process" redirect="true"/>
 </pageflow:Pageflow>

@@ -9,12 +9,12 @@ import java.util.List;
 
 import org.apache.hive.jdbc.HiveBaseResultSet;
 import org.apache.hive.jdbc.HiveCallableStatement;
-import org.bsanalytics.hive.LoadHiveConnection;
+import org.bsanalytics.hive.ConnectionManager;
 
 public class LoadTableFromDataBase {
 	
 	
-	static LoadHiveConnection hcon = new LoadHiveConnection();
+	static ConnectionManager hcon = new ConnectionManager();
 	static Statement stmt = hcon.getHiveConnection();
 	static List<List<Object>> table_rows_list = new ArrayList<>();
 	static ResultSetMetaData metadata;
@@ -23,6 +23,7 @@ public class LoadTableFromDataBase {
 	
 	public static List<List<Object>> loadDataFromTable(String table_name){
 		
+		System.out.println("Table Name =" + table_name);
 		String table_exists = "select * from "+table_name;
 		try {
 			//stmt.setFetchSize(10);

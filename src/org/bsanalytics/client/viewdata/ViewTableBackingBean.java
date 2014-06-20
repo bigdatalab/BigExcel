@@ -12,8 +12,8 @@ public class ViewTableBackingBean {
 	private List<List<String>> table;
 	private List<String> column_names;
 	private static String applicationresponse;
-	//DynamicPaginationLoadingViewModel dp = 
-			//new DynamicPaginationLoadingViewModel();
+	//PaginationViewModel dp = 
+			//new PaginationViewModel();
 	
 	public List<String> getColumn_names() {
 		column_names = gettingColumnNames();

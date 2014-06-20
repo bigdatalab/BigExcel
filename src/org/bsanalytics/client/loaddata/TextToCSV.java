@@ -11,12 +11,14 @@ public class TextToCSV {
 	
 	BufferedReader file_reader = null;
 	BufferedWriter file_writer = null;
-	private static String READ_PATH = "/home/hduser/datasets/Webscope_A2/"
-			+ "ydata-yrbuzzgame-transactions-period1-v1_0.txt";
-	private static String WRITE_PATH = "/home/hduser/datasets/Webscope_A2/"
-			+ "ydata.csv";
+	boolean two_string_flag = false;
+	
+	private static String READ_PATH = "/home/hduser/datasets/ngram_data/ngrams.2";
+	private static String WRITE_PATH = "/home/hduser/datasets/ngram_data/ngram.2.csv";
 	
 	public void loadDataSet(String Path){
+		
+		this.two_string_flag = two_string_flag;
 		
 		try {
 			file_reader = new BufferedReader(new FileReader(Path));
@@ -28,15 +30,25 @@ public class TextToCSV {
 		
 		String data_types=null;
 		String[] splitted=null;
-		try {
+		int header_length =0;
+		int data_type_index=0;
+		int max_length=0;
+		int split_data_length=0;
+		
+		/*try {
 			data_types = file_reader.readLine();
 			splitted = data_types.split(",");
 			System.out.println(splitted[1]);
+			System.out.println(splitted.length);
+			header_length = splitted.length;
+
+			
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		//System.exit(0);
 		
 		//reading the rest of the data
@@ -54,6 +66,9 @@ public class TextToCSV {
 				
 				String single_text_line = file_reader.readLine();
 				
+				
+				
+				
 				if (single_text_line== null)
 					break;
 				else
@@ -62,23 +77,32 @@ public class TextToCSV {
 					//System.out.println(single_text_line);
 					String[] split_data = single_text_line.split("\\s+");		
 					
+					split_data_length = split_data.length;
 					
+					if (split_data_length > max_length){
+						max_length = split_data_length;
+					}
 					
 					//System.out.println(split_data.length);
-					for(int i=0 ; i<split_data.length ; i++){
-						//System.out.println(splitted[i]);
-						if (splitted[i].trim().equals("string")){
+					for(int i=0 ; i<split_data_length ; i++){
+						
+					
+						/*if (splitted[data_type_index].trim().equals("string")){*/
 							
 							//checking the last
 							if (i != split_data.length-1)
 							{
 								//System.out.println("Coming Inside");
-								stb.append("\""+split_data[i]+"\""+",");
+								//stb.append("\""+split_data[i]+"\""+",");
+								stb.append(split_data[i]+",");
 							}
 							else
-								stb.append("\""+split_data[i]+"\"");
+							{
+								//stb.append("\""+split_data[i]+"\"");
+								stb.append(split_data[i]);
+							}
 						}
-						else if (splitted[i].trim().equals("date"))
+						/*else if (splitted[i].trim().equals("date"))
 						{
 							String[] date_split = split_data[i].split("/");
 							String st = new String();
@@ -97,15 +121,15 @@ public class TextToCSV {
 								stb.append(stb_date);
 							
 							
-						}
-						else
+						}*/
+						/*else
 						{
 							//checking for the last one
 							if (!(i == split_data.length-1))
 								stb.append(split_data[i]+",");
 							else
 								stb.append(split_data[i]);
-						}
+						}*/
 						
 					}
 					file_writer.write(stb.toString()+"\n");
@@ -116,8 +140,9 @@ public class TextToCSV {
 					
 				}//end of the else
 				
-			}
+			//}
 			System.out.println("Finished.....");
+			System.out.println("Max length = " + max_length);
 			file_writer.close();
 			
 		} catch (IOException e) {
@@ -133,7 +158,8 @@ public class TextToCSV {
 		
 		String[] path = Path.split("/");
 		String temp = path[path.length-1];
-		String file_name = temp.substring(0, temp.length()-4);
+		//String file_name = temp.substring(0, temp.length()-4);
+		
 	
 		String new_path = new String();
 		StringBuilder stb = new StringBuilder(new_path);
@@ -142,7 +168,7 @@ public class TextToCSV {
 			stb.append(path[i]+"/");
 		}
 		
-		stb.append(file_name+".csv");	
+		stb.append(temp+".csv");	
 		System.out.println("stb.toString()" + stb.toString());
 		return stb.toString();
 		
@@ -150,7 +176,8 @@ public class TextToCSV {
 	
 	public static void main(String args[]){
 		
-		new TextToCSV().changeExtensiontoCSV("/home/hduser/datasets/Webscope_A2/ydata-yrbuzzgame-transactions-period1-v1_0.txt");
+		//new TextToCSV().changeExtensiontoCSV("/home/hduser/datasets/Webscope_A2/ydata-yrbuzzgame-transactions-period1-v1_0.txt");
+		new TextToCSV().loadDataSet("/run/media/hduser/CA78EED378EEBCF7/datasets/"+args[0]);
 	}
 
 }

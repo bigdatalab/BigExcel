@@ -10,7 +10,7 @@ public class QueryDataServlet extends Application{
 	 @Override
 	 public Set<Class<?>> getClasses() {
 	 Set<Class<?>> classes = new HashSet<Class<?>>();
-	 classes.add(QueryData.class);
+	 classes.add(AnalyticsInterface.class);
 	 return classes;
 	 }
 
