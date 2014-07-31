@@ -1,7 +1,5 @@
 package org.bsanalytics.apis.queryconstructor;
 
-import com.google.gson.Gson;
-
 public class QueryConstructor {
 	
 	public String hourlyAnalysis(String query){

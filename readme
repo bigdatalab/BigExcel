@@ -1,0 +1,15 @@
+
+Running the Application
+==========================
+
+1) Import the project In J2EE version of eclipse (Imprt as java project not as maven project)
+
+2) go to WebConect folder and than login folder, right click the login.xhtml and choose the option
+   run on the server in run as menu
+   Note: You need Apache tomcat web application server. In J2EE version of eclipse it is pre installed
+   
+3) you need Hive and Hadoop on the backend in order to run the use case
+	-Hive can be accessed simply through HIVE JDBC API 
+	-go to the ConnectionManager class in org.bsanalytics.apis.loaddate package and change
+	 the JDBC url to your Hive JDBC url
+	
